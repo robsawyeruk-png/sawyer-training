@@ -1,343 +1,355 @@
-<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta name='color-scheme' content='light only'><title>Week 8 Training Card — Rob Sawyer</title><style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:hidden;color-scheme:light}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f4f2;margin:0;padding:10px;color:#1a1a1a;overflow-x:hidden;max-width:100vw;line-height:1.5}
-.hero{background:#0d0d0d;color:#fff;padding:16px 14px;border-radius:8px;margin-bottom:10px}
-.hero h1{margin:0 0 4px;font-size:22px;text-transform:uppercase}
-.hero .eye{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#ff6b00;margin-bottom:4px}
-.hero .meta{font-size:11px;color:rgba(255,255,255,.7);line-height:1.6}
-.page-divider{background:#0d0d0d;color:#fff;text-align:center;padding:4px;font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-top:14px}
-.lean-page{margin:10px 0;max-width:calc(100vw - 20px);overflow-x:hidden}
-.lean-header{padding:8px 10px;border-radius:6px;margin-bottom:8px;color:#fff}
-.lean-header h2{margin:0 0 2px;font-size:14px;text-transform:uppercase}
-.lean-header p{margin:0;color:rgba(255,255,255,.7);font-size:9px}
-.lean-wrap{background:#fff;border-radius:6px;border:1px solid #e5e5e0;overflow:hidden;max-width:100%}
-.lean-wrap table{border-collapse:collapse;font-size:9px;table-layout:fixed;width:100%}
-.lean-wrap th{background:#f0f0ed;padding:4px 1px;text-align:center;font-size:7.5px;color:#666;border-bottom:2px solid #ddd}
-.lean-wrap th:first-child{text-align:left;padding-left:5px}
-.lean-wrap td{padding:3px 1px;text-align:center;border-bottom:1px solid #f0f0f0;vertical-align:middle;line-height:1.2;word-wrap:break-word}
-.lean-wrap td:first-child{text-align:left;padding-left:5px;font-weight:600;font-size:8.5px;white-space:normal}
-.lean-wrap td:first-child .base{display:block;font-weight:400;color:#999;font-size:7px;margin-top:1px}
-.lean-wrap tr:nth-child(even) td{background:#fafaf8}
-.lean-wrap tr.divider td{border-top:2px solid #ddd}
-.cell-w{font-weight:700;font-size:9px;line-height:1.15}
-.cell-r{color:#888;font-size:7px;line-height:1.15}
-.tick{color:#0e9f6e;font-size:11px;font-weight:700;padding:0}
-.cross{color:#c81e1e;font-size:11px;font-weight:700;padding:0}
-.flag{position:relative;background:#fff8e6 !important}
-.flag::after{content:"★";position:absolute;top:0;right:0;color:#d97706;font-size:6.5px}
-.future{color:#ccc;font-style:italic;font-size:8px}
-.lean-footnotes{margin-top:6px;padding:6px 10px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px;font-size:8px;line-height:1.5}
-.lean-footnotes ul{margin:2px 0 0;padding-left:12px}
-.summary{margin:10px 0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07)}
-.summary-header{background:#0d0d0d;color:#fff;padding:10px 14px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.stats-table{border-collapse:collapse;font-size:9.5px;table-layout:fixed;width:100%}
-.stats-table th{background:#f0f0ed;padding:4px 3px;text-align:center;font-size:8.5px;color:#666;border-bottom:2px solid #ddd}
-.stats-table th:first-child{text-align:left;padding-left:8px}
-.stats-table td{padding:4px 3px;text-align:center;border-bottom:1px solid #f0f0f0}
-.stats-table td:first-child{text-align:left;padding-left:8px;font-weight:600}
-.stats-table tr:nth-child(even) td{background:#fafaf8}
-.pb-cell{background:#fff8e6;font-weight:700}
-.tbc{color:#bbb;font-style:italic;font-size:8.5px}
-.section-title{font-size:11px;font-weight:700;color:#c81e1e;margin:12px 0 4px;padding-left:2px}
-.footer{background:#0d0d0d;color:rgba(255,255,255,.5);padding:14px;border-radius:8px;font-size:10px;margin-top:14px}
-</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 8 — Daily Workouts</title>
+<style>
+  :root {
+    --bg: #0d0d0d; --panel: #161616; --panel-2: #1e1e1e; --line: #2a2a2a;
+    --text: #f2f0ea; --muted: #a8a8a4; --accent: #ff6b00;
+    --done: #22c55e; --done-bg: rgba(34,197,94,0.10);
+    --miss: #ef4444; --miss-bg: rgba(239,68,68,0.08);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; }
+  .num { font-variant-numeric: tabular-nums; }
 
-<div class="hero">
-  <div class="eye">Rob Sawyer · Phase 2: Intrinsic Build</div>
-  <h1>Week 8 of 16</h1>
-  <div class="meta">3–9 Aug 2026<br>🏁 Hyrox 29 Oct 2026 — 9wk 5d to go<br>🏃 London Marathon 24 Apr 2027 — 35wk to go</div>
+  .sticky-top { position:sticky; top:0; z-index:20; background:var(--bg); }
+  header { padding:8px 16px 6px; border-bottom:1px solid var(--line); }
+  .eyebrow { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:2px; }
+  h1 { font-size:19px; margin:0; font-weight:800; letter-spacing:-0.01em; }
+  .week-label { font-size:12px; color:var(--text); margin-top:1px; font-weight:800; letter-spacing:0.01em; }
+  .subtitle { font-size:12.5px; color:var(--muted); margin-top:1px; font-weight:600; }
+  .countdowns { margin-top:4px; font-size:10px; color:var(--muted); line-height:1.4; }
+  .countdowns b { color:var(--text); font-weight:700; }
+
+  .tabs { display:flex; padding:5px 16px; gap:4px; border-bottom:1px solid var(--line); background:var(--bg); }
+  .tab { flex:1; text-align:center; padding:6px 0 7px; cursor:pointer; font-size:15px; font-weight:800;
+    color:var(--muted); border-bottom:3px solid transparent; }
+  .tab.active { color:var(--text); border-bottom-color:var(--text); }
+
+  main { padding:8px 16px 24px; max-width:680px; margin:0 auto; }
+  .sec-title { font-size:13px; font-weight:800; color:var(--accent); text-transform:uppercase;
+    letter-spacing:0.05em; margin:12px 0 5px; }
+  .sec-title:first-child { margin-top:3px; }
+
+  .row { background:var(--panel); border:1px solid var(--line); border-radius:9px;
+    padding:7px 9px; margin-bottom:5px; }
+  .row.state-done { background:var(--done-bg); border-color:rgba(34,197,94,0.35); }
+  .row.state-miss { background:var(--miss-bg); border-color:rgba(239,68,68,0.3); }
+  .row-top { display:flex; align-items:center; gap:10px; }
+  .ex-info { flex:1; min-width:0; }
+  .ex-name { font-size:16px; font-weight:800; line-height:1.25; }
+  .ex-target { font-size:11px; font-weight:600; color:var(--muted); margin-top:2px; }
+  .ex-flag { font-size:10.5px; color:var(--text); opacity:0.8; margin-top:3px; line-height:1.3; font-weight:700; }
+  .btns { display:flex; gap:5px; flex:0 0 auto; }
+  .btn { width:30px; height:28px; border-radius:7px; border:1px solid var(--line);
+    background:var(--panel-2); color:var(--muted); font-size:13px; font-weight:800;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; }
+  .btn.yes.active { background:var(--done); border-color:var(--done); color:#06210f; }
+  .btn.no.active { background:var(--miss); border-color:var(--miss); color:#2a0505; }
+
+  /* Zone 2 rows — modality selector + two time fields, replaces tick/cross for Zone 2 slots */
+  .z2-row.filled { background:var(--done-bg); border-color:rgba(34,197,94,0.35); }
+  .z2-modes { display:flex; gap:6px; margin-top:6px; }
+  .z2-mode { flex:1; text-align:center; padding:7px 0; border-radius:7px; border:1px solid var(--line);
+    background:var(--panel-2); color:var(--muted); font-size:12px; font-weight:800; cursor:pointer; }
+  .z2-mode.active { background:var(--text); border-color:var(--text); color:#0d0d0d; }
+  .z2-inputs { display:flex; gap:8px; margin-top:6px; }
+  .z2-field { flex:1; }
+  .z2-field label { display:block; font-size:9.5px; color:var(--muted); text-transform:uppercase;
+    letter-spacing:0.04em; margin-bottom:3px; font-weight:700; }
+  .z2-input { width:100%; background:var(--panel-2); border:1px solid var(--line); border-radius:7px;
+    color:var(--text); font-size:15px; font-weight:700; padding:7px 8px; font-family:inherit; }
+
+  .wod-box { background:var(--panel-2); border:1px solid var(--line); border-radius:9px;
+    padding:9px 10px; font-size:12px; font-weight:600; color:var(--text); opacity:0.9; line-height:1.4; margin-bottom:6px; white-space:pre-line; }
+
+  .pain-row { display:flex; gap:4px; margin-top:6px; }
+  .pain-btn { flex:1; min-width:0; height:30px; border-radius:7px; border:1px solid var(--line);
+    background:var(--panel-2); color:var(--muted); font-size:12px; font-weight:800;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .pain-btn.active { background:var(--text); border-color:var(--text); color:#0d0d0d; }
+
+  textarea.notes { width:100%; min-height:70px; background:var(--panel-2); border:1px solid var(--line);
+    border-radius:10px; color:var(--text); font-size:15px; padding:10px; margin-top:6px; font-family:inherit; resize:vertical; }
+
+  .copy-btn { width:100%; padding:12px; border-radius:10px; background:var(--text);
+    color:#0d0d0d; border:none; font-size:15px; font-weight:800; cursor:pointer; margin-top:16px; }
+  .copy-btn.copied { background:var(--done); color:#06210f; }
+  .copy-btn.nonew { background:var(--panel-2); color:var(--muted); border:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="sticky-top">
+  <header>
+    <div class="eyebrow">Rob Sawyer · Hyrox Prep</div>
+    <h1>Daily Workouts</h1>
+    <div class="week-label">Week 8 — 17–23 Aug 2026</div>
+    <div class="subtitle" id="weekSubtitle">Monday — Upper Body</div>
+    <div class="countdowns">🏁 <b>Hyrox</b> 29 Oct 2026 — 9wk 6d to go<br>🏃 <b>Marathon</b> 24 Apr 2027 — 35wk 1d to go</div>
+  </header>
+  <div class="tabs" id="tabs"></div>
 </div>
+<main id="main"></main>
+<script>
+// item.type "zone2" => modality (bike/run/row) + total time + zone2 time, no screenshot needed.
+// item.type omitted (default tick) => normal ✓/✗ row, used for weighted/rep work and the
+// screenshot-based Row Intervals / Hyrox WOD sessions.
+const DAYS = {
+  mon: { label:"Mon", full:"Monday — Upper Body",
+    warmup:{n:"Warm-up", type:"zone2", hint:"10min easy run — NEW Wk9, replaces bike/row warm-up"},
+    workout: [
+      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"MOVED to front of session (Wk9) so it stops getting cut. Deferred twice already (Wk6, Wk8) — third attempt at 30kg. Watch shoulder closely."},
+      {n:"Bench Press", wt:"55kg", reps:"4×6"},
+      {n:"Dead Hang", reps:"3×20s · BW"},
+      {n:"Captain's Chair", reps:"3×22 · BW", f:"First real attempt — cut twice already (Wk6, Wk8)"},
+      {n:"Cable Row", wt:"62.5kg", reps:"3×10"},
+      {n:"Lat Pulldown", wt:"56.5kg", reps:"3×10"},
+      {n:"Pull-Ups", wt:"Green band", reps:"3×max"},
+      {n:"Face Pulls", wt:"16.25kg", reps:"3×15"},
+      {n:"Core Machine", wt:"65kg", reps:"3×10"},
+    ]},
+  tue: { label:"Tue", full:"Tuesday — Row Intervals",
+    warmup:{n:"Warm-up", type:"zone2", hint:"NEW Wk9: 10min easy run + 10min row, before intervals"},
+    wodbox: "10×250m Row / :30 rest\nTarget pace: ~1:50-1:52/500m\nSend Garmin screenshot after — splits/HR/total time logged from that.",
+    workout: [{n:"Row Intervals session (screenshot to follow)", reps:"10×250m/:30r"}] },
+  wed: { label:"Wed", full:"Wednesday — Lower Body (Back Squat)",
+    warmup:{n:"Warm-up", type:"zone2", hint:"~10min target — bike/row, no run (heavy lifting day)"},
+    glute: [
+      {n:"Clamshells", reps:"3 sets · bodyweight/manual resistance"},
+      {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band"},
+      {n:"Side Plank", reps:"3×30s each side"},
+      {n:"Kettlebell Knee Drive", reps:"3×12 each · start light", f:"Never actually attempted under the new kettlebell method — first real go"},
+    ],
+    workout: [
+      {n:"Cable Straight Leg Raise", wt:"5kg", reps:"3×15 each", f:"Stepped up from 2.5kg — first change since Wk3, overdue"},
+      {n:"Captain's Chair", reps:"3×22 · BW", f:"Still untested — deferred from Wk6"},
+      {n:"Hamstring Curl", wt:"42.5kg", reps:"4×10", f:"Stepped up from 40kg — held since Wk5, overdue. Was already hard by the end at 40kg — watch closely"},
+      {n:"Back Squat", wt:"40kg", reps:"4×8", f:"Hold — one clean week isn't the two the rule calls for"},
+      {n:"Bulgarian Split Squat", reps:"3×10 each · BW", f:"Rep bump from 8 — felt manageable last week. Still bodyweight, DBs from Wk10"},
+      {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each"},
+      {n:"Goblet Squat", wt:"25kg", reps:"3×10", f:"Missed both Wed and Sat last week — back on the list"},
+    ]},
+  thu: { label:"Thu", full:"Thursday — Rest / Flexible Catch-up",
+    workout: [{n:"Optional Zone 2 or catch-up on anything missed earlier in the week", type:"zone2", hint:"only if you want it"}] },
+  fri: { label:"Fri", full:"Friday — Hyrox WOD",
+    warmup:{n:"Warm-up", type:"zone2", hint:"Easy row, no fixed target"},
+    wodbox: "Full WOD, ×2 rounds:\nRow 1km → Wall Balls ×20 (6kg) → Run 5min (7.5km/h, pace held Wk9) → Wall Balls ×20 → Ski 1km → Wall Balls ×20\n30s rest between every station.\nSend Garmin screenshot after — splits/HR/total time logged from that.",
+    workout: [{n:"Full WOD session (screenshot to follow)", reps:"6 rounds, 6kg wall ball, 7.5km/h run — pace held this week"}] },
+  sat: { label:"Sat", full:"Saturday — Lower Body (Leg Press)",
+    warmup:{n:"Warm-up", type:"zone2", hint:"~10min target — bike/row, no run (heavy lifting day)"},
+    glute: [
+      {n:"Clamshells", reps:"3 sets · bodyweight/manual resistance", f:"Missed twice running last week (Wed and Sat) — deliberately kept in, worth a check on why it keeps slipping"},
+      {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band"},
+      {n:"Side Plank", reps:"3×30s each side"},
+      {n:"Kettlebell Knee Drive", reps:"3×12 each · start light", f:"Never actually attempted under the new kettlebell method — first real go"},
+    ],
+    workout: [
+      {n:"Cable Straight Leg Raise", wt:"5kg", reps:"3×15 each", f:"Matches Wednesday's step"},
+      {n:"Captain's Chair", reps:"3×25 · BW", f:"Stepped up from 22×3, confirmed clean last week"},
+      {n:"Leg Press", wt:"105kg", reps:"4×12", f:"Stepped up from 100kg — held since Wk5, overdue"},
+      {n:"Hamstring Curl", wt:"42.5kg", reps:"4×10", f:"Matches Wednesday's step"},
+      {n:"Hip Thrust", wt:"45kg", reps:"4×12", f:"The owed attempt, finally — deferred since Wk6. Drop back to 40kg if it's a genuine grind, not just hard-but-clean"},
+      {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each", f:"Missed last Saturday — back on the list"},
+      {n:"Goblet Squat", wt:"25kg", reps:"3×10", f:"Missed both Wed and Sat last week — back on the list"},
+    ]},
+  sun: { label:"Sun", full:"Sunday — Long Zone 2 + Running Return",
+    warmup:{n:"Warm-up", type:"zone2", hint:"NEW Wk9: 10min easy run before the row — additive, not a swap (Zone 2 days don't normally need a warm-up)"},
+    wodbox: "Long Zone 2 row\nTarget: 80 min (raised from 78min actual last week)\n110-139 BPM\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs this week stop.",
+    workout: [{n:"Long Zone 2 row session", type:"zone2", hint:"80min target"}] },
+};
+const PHYSIO = [
+  {n:"Feet Elevated Bridge", reps:"3×60s"},
+  {n:"Toe Stretch", reps:"2×60s"},
+  {n:"Forward Step Drill", reps:"30 each foot"},
+  {n:"High Knee Swaps", reps:"2×60s continuous"},
+];
+const PM_ITEMS = [
+  {n:"Towel Scrunches", reps:"3×20"},
+  {n:"Toe Spreading + Extension", reps:"2×15"},
+  {n:"Eccentric Heel Drops", reps:"3×15 · BW"},
+  {n:"Ankle Hops", reps:"3×15"},
+  {n:"Farmer's Walk on Toes", reps:"3×20m · BW"},
+];
+const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
+let state = {};
+let copied = {};
+let activeDay = "mon";
+const STORE_KEY = "wk8_checklist_v4_state";
+const COPIED_KEY = "wk8_checklist_v4_copied";
 
+async function loadState() {
+  try { const r = await window.storage.get(STORE_KEY, false); state = r && r.value ? JSON.parse(r.value) : {}; } catch(e) { state = {}; }
+  try { const r2 = await window.storage.get(COPIED_KEY, false); copied = r2 && r2.value ? JSON.parse(r2.value) : {}; } catch(e) { copied = {}; }
+}
+async function saveState() { try { await window.storage.set(STORE_KEY, JSON.stringify(state), false); } catch(e){} }
+async function saveCopied() { try { await window.storage.set(COPIED_KEY, JSON.stringify(copied), false); } catch(e){} }
 
-<div class="page-divider">Page 1 — Overview</div>
-<div class="summary" style="margin-bottom:0;border-radius:14px 14px 0 0">
-  <div class="summary-header" style="background:#7e3af2">📌 This Week at a Glance — Week 8 of 16</div>
-  <div style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
-    
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#7e3af2;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">P2</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#7e3af2;display:block;margin-bottom:2px">Phase 2 — Intrinsic Build, Week 3 of 4</strong>Week 5 was the strongest performance week of the plan yet — Row PB (9:19.9), WOD PB (39:02), Leg Press jumped from 70kg to 100kg. Week 6 holds most of the big lifts to consolidate, with two deliberate pushes.</div>
+function k(day, section, idx) { return `${day}_${section}_${idx}`; }
+
+// Tick/cross items
+function get(key) { return state[key] || { status:null }; }
+function setStatus(key, status) {
+  const cur = get(key); cur.status = (cur.status===status) ? null : status; state[key]=cur; saveState();
+}
+// Zone 2 items
+function getZone2(key) { return state[key] || { mode:null, total:"", z2:"" }; }
+function setZone2Mode(key, mode) {
+  const cur = getZone2(key); cur.mode = (cur.mode===mode) ? null : mode; state[key]=cur; saveState();
+}
+function setZone2Field(key, field, val) {
+  const cur = getZone2(key); cur[field] = val; state[key]=cur; saveState();
+}
+
+function getNote(day) { return state[`${day}_notes`] || ""; }
+function setNote(day, val) { state[`${day}_notes`] = val; saveState(); }
+function getPain(day) { return state[`${day}_pain`] || null; }
+function setPain(day, val) {
+  const cur = getPain(day); state[`${day}_pain`] = (cur===val) ? null : val; saveState();
+}
+
+function exRow(item, key) {
+  const st = get(key);
+  const cls = st.status==='yes' ? ' state-done' : st.status==='no' ? ' state-miss' : '';
+  const nameLine = item.wt ? `${item.n}, ${item.wt}` : item.n;
+  return `<div class="row${cls}"><div class="row-top">
+    <div class="ex-info"><div class="ex-name">${nameLine}</div><div class="ex-target num">${item.reps}</div>
+    ${item.f?`<div class="ex-flag">⚑ ${item.f}</div>`:''}</div>
+    <div class="btns">
+      <div class="btn yes ${st.status==='yes'?'active':''}" data-key="${key}" data-status="yes">✓</div>
+      <div class="btn no ${st.status==='no'?'active':''}" data-key="${key}" data-status="no">✗</div>
+    </div></div></div>`;
+}
+
+function zone2Row(item, key) {
+  const z = getZone2(key);
+  const filled = z.mode || z.total || z.z2;
+  return `<div class="row z2-row${filled?' filled':''}">
+    <div class="ex-name">${item.n}</div>
+    ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
+    <div class="z2-modes">
+      <div class="z2-mode ${z.mode==='bike'?'active':''}" data-key="${key}" data-mode="bike">Bike</div>
+      <div class="z2-mode ${z.mode==='run'?'active':''}" data-key="${key}" data-mode="run">Run</div>
+      <div class="z2-mode ${z.mode==='row'?'active':''}" data-key="${key}" data-mode="row">Row</div>
     </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#c81e1e;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🎯</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#c81e1e;display:block;margin-bottom:2px">OHP — 25kg → 30kg</strong>Rob's call: 25kg felt easy with 0 pain for a full clean week. This is a 5kg jump, double the standard step, on a shoulder with flare history — watch it closely, first sign of trouble and it drops back.</div>
+    <div class="z2-inputs">
+      <div class="z2-field"><label>Total time (min)</label><input type="number" inputmode="numeric" class="z2-input" data-key="${key}" data-field="total" value="${z.total}"></div>
+      <div class="z2-field"><label>Zone 2 time (min)</label><input type="number" inputmode="numeric" class="z2-input" data-key="${key}" data-field="z2" value="${z.z2}"></div>
     </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#0e9f6e;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">💪</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#0e9f6e;display:block;margin-bottom:2px">Hip Thrust +5kg, Captain's Chair +2 reps</strong>Hip Thrust 40kg → 45kg (3 clean weeks on the Cutler machine, past the usual gate). Captain's Chair 20×3 → 22×3, a small step rather than jumping to 25. Everything else this week (Cable Row, Lat Pulldown, Bench, Leg Press, Goblet Squat, Hamstring Curl, Single-Leg RDL) holds — all only 1 week at their new weight.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#ff6b00;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🏋️</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#ff6b00;display:block;margin-bottom:2px">Wall Ball — 4kg → 6kg, 6 rounds is the permanent format</strong>Long-deferred jump finally happening — sets have been the most consistent of the plan (52-63s spread last week). The Rounds 7-8 extension trialled in Week 5 was never actually completed and is now discontinued permanently — standard 6-round format stays the WOD going forward.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#0284c7;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">🏃</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#0284c7;display:block;margin-bottom:2px">Sunday Zone 2 — Row target 70min</strong>Hit 60min last week against a 45min target, well ahead of the build-up schedule. Pushing to 70min this week rather than a smaller step, given how comfortably 60 went (66% Zone 2, avg HR 134).</div>
-    </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#374151;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">📋</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#374151;display:block;margin-bottom:2px">Compliance — still a gap</strong>Pain was logged every day last week (real improvement), but bed sequence, single-leg balance and steps were never actually captured despite being asked daily — two weeks running now. Keep asking daily; Single-Leg Balance holds at eyes-closed rather than progressing to folded towel, since eyes-closed was never actually confirmed as done.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start">
-      <div style="background:#374151;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">😴</div>
-      <div style="font-size:12px;color:#444;line-height:1.5"><strong style="color:#374151;display:block;margin-bottom:2px">Thursday — Rest Day</strong>Morning bed sequence + physio at home only, feet elevated in evening, no gym.</div>
-    </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<div class="page-divider">Page 2 — Monday (Upper Body)</div>
+function rowFor(item, key) {
+  return item.type === 'zone2' ? zone2Row(item, key) : exRow(item, key);
+}
 
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>MONDAY — Upper Body</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="tick">✓</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="tick">✓</td><td class="tick flag">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="tick">✓</td></tr><tr><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="tick">✓</td></tr><tr><td>Glute Bridge<span class="base">3×60s hold</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Cable Row</td><td class=""><div class="cell-w">60kg</div><div class="cell-r">10/3</div></td><td class=""><div class="cell-w">60kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">62.5kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">62.5kg</div><div class="cell-r">10/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">62.5kg</div><div class="cell-r">10/3</div></td></tr><tr><td>Lat Pulldown</td><td class="flag"><div class="cell-w">58kg</div><div class="cell-r">10/3</div></td><td class=""><div class="cell-w">54kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">56.5kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">56.5kg</div><div class="cell-r">10/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">56.5kg</div><div class="cell-r">10/3</div></td></tr><tr><td>Pull-Ups (band)</td><td class=""><div class="cell-w">Green</div><div class="cell-r">10/3</div></td><td class=""><div class="cell-w">Green</div><div class="cell-r">max/3</div></td><td class="flag"><div class="cell-w">Green</div><div class="cell-r">max/3</div></td><td class="flag"><div class="cell-w">Green</div><div class="cell-r">max/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Face Pulls</td><td class=""><div class="cell-w">15kg</div><div class="cell-r">15/3</div></td><td class=""><div class="cell-w">16.25kg</div><div class="cell-r">15/3</div></td><td class="flag"><div class="cell-w">16.25kg</div><div class="cell-r">15/3</div></td><td class="flag"><div class="cell-w">16.25kg</div><div class="cell-r">15/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">16.25kg</div><div class="cell-r">15/3</div></td></tr><tr><td>Bench Press</td><td class=""><div class="cell-w">50kg</div><div class="cell-r">6/4</div></td><td class=""><div class="cell-w">52.5kg</div><div class="cell-r">6/4</div></td><td class="flag"><div class="cell-w">55kg</div><div class="cell-r">6/4</div></td><td class="flag"><div class="cell-w">55kg</div><div class="cell-r">6/4</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Strict OHP</td><td class="flag"><div class="cell-w">20kg</div><div class="cell-r">8/3</div></td><td class=""><div class="cell-w">25kg</div><div class="cell-r">8/3</div></td><td class="flag"><div class="cell-w">25kg</div><div class="cell-r">8/3</div></td><td class="flag"><div class="cell-w">30kg</div><div class="cell-r">8/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Core Machine</td><td class="flag"><div class="cell-w">65kg</div><div class="cell-r">10/3</div></td><td class="future">n/a</td><td class="flag"><div class="cell-w">65kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">65kg</div><div class="cell-r">10/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">65kg</div><div class="cell-r">10/3</div></td></tr><tr><td>Dead Hang</td><td class=""><div class="cell-w">BW</div><div class="cell-r">20s/3</div></td><td class="future">n/a</td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">20s/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">20s/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Captain's Chair</td><td class=""><div class="cell-w">BW</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">22/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>Wk1 — Row 65→60kg, Lat Pulldown 61→58kg (later found wrong, corrected Wk2/3 to 54kg), OHP 25→20kg (shoulder). Glute Bridge done as the wrong single-leg elevated variant this week.</li><li>Wk2 — session actually happened Thursday, not Monday (one-off, day doesn't matter — what matters is 3 sessions/week got done). Everything logged real except OHP and Captain's Chair, genuinely skipped for DOMS.</li><li>Wk3 — OHP self-escalated to 25kg, trial status (confirmed official Wk4). Face Pulls first week on new machine. Glute Bridge done at 4×60s vs the 10-20s originally prescribed (discovered 18 Jul, applies to all of Wk3).</li><li>Wk4 — Forward Step Drill corrected to 30 reps each foot (was 20 all of Wk1-3). Captain's Chair progressed 15×3 → 20×3.</li><li>Wk5 (PLANNED) — Cable Row → 62.5kg, Lat Pulldown → 56.5kg, Bench Press → 55kg, all first increases after being static/settling for 2+ weeks. OHP and Face Pulls held (OHP only 1 clean week since going official — shoulder history; Face Pulls only 2 weeks on new machine). Captain's Chair held, just locked in as standard last week. Pull-Ups held — no rep-count trend logged yet to justify a band change.</li><li>Wk5 — Core Machine and Dead Hang reinstated on the card/tracker (26 Jul). Rob confirmed both have been done every session since Week 1 — they simply stopped being logged after 9 Jul. Paperwork gap only, not a missed-training gap; Wk2-4 shown as n/a on the grid above rather than backfilled with unconfirmed numbers.</li><li>Wk6 (PLANNED, agreed 2 Aug) — OHP → 30kg, the big call of the transition: 5kg jump (double the standard step) since 25kg felt easy with 0 pain for a full clean week. Shoulder flare history means this gets watched closely, first sign of trouble it drops back. Captain's Chair → 22×3 (small step up from 20). Cable Row, Lat Pulldown, Bench, Core Machine, Dead Hang, Pull-Ups, Face Pulls all HOLD — everything else only 1-3 weeks at current level.</li></ul></div>
-</div>
+function renderTabs() {
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = DAY_ORDER.map(d => `<div class="tab ${d===activeDay?'active':''}" data-day="${d}">${DAYS[d].label[0]}</div>`).join('');
+  tabs.querySelectorAll('.tab').forEach(t => t.onclick = () => { activeDay = t.dataset.day; render(); });
+}
 
+function renderDay() {
+  const d = DAYS[activeDay];
+  document.getElementById("weekSubtitle").textContent = d.full;
+  let h = '';
+  h += `<div class="sec-title">AM Rehab</div>`;
+  PHYSIO.forEach((item,i) => h += exRow(item, k(activeDay,'physio',i)));
+  if (d.glute) { h += `<div class="sec-title">Glute Activation</div>`;
+    d.glute.forEach((item,i) => h += exRow(item, k(activeDay,'glute',i))); }
+  h += `<div class="sec-title">Workout</div>`;
+  if (d.warmup) h += rowFor(d.warmup, k(activeDay,'warmup',0));
+  if (d.wodbox) h += `<div class="wod-box">${d.wodbox}</div>`;
+  d.workout.forEach((item,i) => h += rowFor(item, k(activeDay,'workout',i)));
+  h += zone2Row({n:"Zone 2 (AM)", hint:"post-weights / morning"}, k(activeDay,'z2am',0));
+  h += `<div class="sec-title">PM Rehab</div>`;
+  PM_ITEMS.forEach((item,i) => h += exRow(item, k(activeDay,'pm',i)));
+  h += zone2Row({n:"Zone 2 (PM)", hint:"evening catch-up"}, k(activeDay,'z2pm',0));
+  h += `<div class="sec-title">Foot Pain</div>`;
+  const pain = getPain(activeDay);
+  h += `<div class="pain-row">` + [...Array(10).keys()].map(n=>n+1).map(n =>
+    `<div class="pain-btn ${pain===n?'active':''}" data-pain="${n}">${n}</div>`).join('') + `</div>`;
+  h += `<div class="sec-title">Notes</div>`;
+  h += `<textarea class="notes" id="notesBox" placeholder="Weight changes, issues, anything...">${getNote(activeDay)}</textarea>`;
+  h += `<button class="copy-btn" id="copyBtn">Copy Update</button>`;
+  document.getElementById("main").innerHTML = h;
 
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>TUESDAY — Physio Only (main session by screenshot)</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>Physio-only day — main session (Row Intervals) tracked separately via Garmin screenshot on the Row Interval Tracker page, not here. AM Rehab order fixed 22 Aug 2026: Feet Elevated Bridge, Toe Stretch, Forward Step Drill, High Knee Swaps, always in this order, every day.</li></ul></div>
-</div>
+  document.querySelectorAll('.btn').forEach(b => b.onclick = () => { setStatus(b.dataset.key, b.dataset.status); render(); });
+  document.querySelectorAll('.z2-mode').forEach(b => b.onclick = () => { setZone2Mode(b.dataset.key, b.dataset.mode); render(); });
+  document.querySelectorAll('.z2-input').forEach(inp => {
+    inp.oninput = (e) => setZone2Field(inp.dataset.key, inp.dataset.field, e.target.value);
+    inp.onblur = () => render();
+  });
+  document.querySelectorAll('.pain-btn').forEach(b => b.onclick = () => { setPain(activeDay, parseInt(b.dataset.pain)); render(); });
+  document.getElementById('notesBox').oninput = (e) => setNote(activeDay, e.target.value);
+  document.getElementById('copyBtn').addEventListener('click', onCopyClick);
+}
 
+function render() { renderTabs(); renderDay(); }
 
-<div class="page-divider">Page 3 — Tuesday (Row Intervals)</div>
-<div class="summary">
-  <div class="summary-header" style="background:#c81e1e">🚣 Row Interval Tracker — Round by Round, Week on Week</div>
-  <div style="padding:14px 10px;overflow-x:hidden">
-    <div style="font-size:10.5px;color:#666;margin-bottom:10px">10×250m/30s rest, every Tuesday. Splits shown as raw time per 250m interval.</div>
-    <table style="width:100%;border-collapse:collapse;font-size:8px;table-layout:fixed">
-      <colgroup><col style="width:9%"><col style="width:15.17%"><col style="width:15.17%"><col style="width:15.17%"><col style="width:15.17%"><col style="width:15.16%"><col style="width:15.16%"></colgroup>
-      <tr style="background:#c81e1e;color:white"><th style="padding:5px 2px;text-align:left;font-size:7.5px">Rd</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 1 (30 Jun)</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 4 (21 Jul)</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 5 (28 Jul)</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 6 (4 Aug)</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 7 (11 Aug, DELOAD)</th><th style="padding:5px 2px;text-align:center;font-size:7.5px">Week 8 (18 Aug)</th></tr>
-      <tr style="background:#f5f5f3"><td style="padding:4px 2px">1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.0</td></tr><tr style="background:"><td style="padding:4px 2px">2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.0</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px">3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td></tr><tr style="background:"><td style="padding:4px 2px">4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.8</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px">5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.8</td></tr><tr style="background:"><td style="padding:4px 2px">6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.0</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px">7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:55.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:53.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">2:12.6 ⚠️</td></tr><tr style="background:"><td style="padding:4px 2px">8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:58.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.8 ✅</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:52.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:55.4</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px">9</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:59.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.8 ✅</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:51.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">2:04.4</td></tr><tr style="background:"><td style="padding:4px 2px">10</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:57.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50.4 🏆</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:47.6 🏆</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:45.0 🏆</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:59.4</td></tr>
-      <tr style="background:#1a1a1a;color:white;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">TOTAL TIME</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:34.9</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:22.1 🏆 PB</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:19.9 🏆 PB</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:12.3 🏆 PB</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:38.9</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">AVG PACE/500m</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:54.9/500m</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:52.4/500m</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:51.9/500m</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:50.4/500m</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:55.7/500m</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">HR avg / max (intervals)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">160 / 177</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">157 / 175</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">161 / 179</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">157 / 170</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">Avg / max stroke rate</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">31 / 38 spm</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">29 / 37 spm</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">Zone 4 time (156–168)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">8:14 (58%)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">7:29 (53%) + 2:27 Z5 (17%)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">5:55 (42%) + 4:28 Z5 (31%)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">8:35 (59%) + 0:30 Z5 (3%)</td></tr><tr style="background:#fef3c7;font-weight:700"><td style="padding:5px 2px;font-size:7.5px">Exercise Load (Garmin)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">No data</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">102</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">83</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">97</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">79</td></tr>
-    </table>
-    <div class="lean-footnotes" style="margin-top:8px">No avg HR/stroke rate logged for Week 1 — Garmin was still running through the warm-up when intervals started that week. Weeks 1–3 all showed a fade from round 7 onward. Week 4 tested capping round 1 pace instead of going out hot — it worked: rounds 8–10 became the fastest of the session, producing a 9:22.1 PB. Recommend locking this in as standard going forward — real decision due at the Week 5 transition. <b>Exercise Load</b> (added 26 Jul 2026) is Garmin's per-activity EPOC-based intensity×duration score — a measure of physiological cost, separate from performance. Wk3→4 load jumped 26% for only a 1.9% time improvement — worth watching whether cost keeps climbing faster than performance over the next few weeks, as an early signal for the Week 7 deload.</div>
-  </div>
-</div>
-<div class="summary">
-  <div class="summary-header" style="background:#7c2d12">📜 Pre-Programme Reference — Old PBs (Not Part of Weekly Tracking)</div>
-  <div style="padding:14px 10px">
-    <div style="font-size:10.5px;color:#666;margin-bottom:10px">Historical entries from before this 16-week plan started (25 Jun 2026) — context only.</div>
-    <div style="font-size:10px;font-weight:700;color:#7c2d12;margin-bottom:4px;text-transform:uppercase">10×250m/:30r Row — Pre-Programme</div>
-    <table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:14px">
-      <tr style="background:#7c2d12;color:white"><th style="padding:5px 6px;text-align:left;font-size:9px">Date</th><th style="padding:5px 6px;text-align:center;font-size:9px">Total Time</th><th style="padding:5px 6px;text-align:center;font-size:9px">Avg Pace/500m</th></tr>
-      <tr style="background:#f5f5f3"><td style="padding:5px 6px">18/12/25</td><td style="padding:5px 6px;text-align:center">9:53.3</td><td style="padding:5px 6px;text-align:center">1:58.7</td></tr><tr style="background:"><td style="padding:5px 6px">26/04/26</td><td style="padding:5px 6px;text-align:center">9:44.1</td><td style="padding:5px 6px;text-align:center">1:56.8</td></tr><tr style="background:#f5f5f3"><td style="padding:5px 6px">28/04/26 🥇</td><td style="padding:5px 6px;text-align:center">9:32.8</td><td style="padding:5px 6px;text-align:center">1:54.6</td></tr><tr style="background:"><td style="padding:5px 6px">03/06/26</td><td style="padding:5px 6px;text-align:center">9:46.9</td><td style="padding:5px 6px;text-align:center">1:57.4</td></tr><tr style="background:#f5f5f3"><td style="padding:5px 6px">25/06/26 (Week 0 / true baseline)</td><td style="padding:5px 6px;text-align:center">9:40.0</td><td style="padding:5px 6px;text-align:center">1:56.0</td></tr>
-    </table>
-    <div style="font-size:10px;font-weight:700;color:#0e5c4a;margin-bottom:4px;text-transform:uppercase">2km Time Trial — Pre-Programme</div>
-    <table style="width:100%;border-collapse:collapse;font-size:10px">
-      <tr style="background:#0e5c4a;color:white"><th style="padding:5px 6px;text-align:left;font-size:9px">Date</th><th style="padding:5px 6px;text-align:center;font-size:9px">Total Time</th><th style="padding:5px 6px;text-align:center;font-size:9px">Avg Pace/500m</th></tr>
-      <tr style="background:#f5f5f3"><td style="padding:5px 6px">23/08/24</td><td style="padding:5px 6px;text-align:center">7:51.0</td><td style="padding:5px 6px;text-align:center">1:57.7</td></tr><tr style="background:"><td style="padding:5px 6px">03/01/25</td><td style="padding:5px 6px;text-align:center">7:43.0</td><td style="padding:5px 6px;text-align:center">1:55.7</td></tr><tr style="background:#f5f5f3"><td style="padding:5px 6px">11/03/25 (best) 🥇</td><td style="padding:5px 6px;text-align:center">7:34.0</td><td style="padding:5px 6px;text-align:center">1:53.5</td></tr><tr style="background:"><td style="padding:5px 6px">12/06/25</td><td style="padding:5px 6px;text-align:center">7:59.2</td><td style="padding:5px 6px;text-align:center">1:59.8</td></tr>
-    </table>
-  </div>
-</div>
+function allKeysForDay(day) {
+  const d = DAYS[day];
+  const keys = [];
+  PHYSIO.forEach((item,i) => keys.push([k(day,'physio',i), `AM Rehab: ${item.n}`, 'tick']));
+  if (d.glute) d.glute.forEach((item,i) => keys.push([k(day,'glute',i), `Glute Activation: ${item.n}`, 'tick']));
+  if (d.warmup) keys.push([k(day,'warmup',0), `Warm-up`, d.warmup.type==='zone2'?'zone2':'tick']);
+  d.workout.forEach((item,i) => keys.push([k(day,'workout',i), `Workout: ${item.n}`, item.type==='zone2'?'zone2':'tick']));
+  keys.push([k(day,'z2am',0), `Zone 2 (AM)`, 'zone2']);
+  PM_ITEMS.forEach((item,i) => keys.push([k(day,'pm',i), `PM Rehab: ${item.n}`, 'tick']));
+  keys.push([k(day,'z2pm',0), `Zone 2 (PM)`, 'zone2']);
+  return keys;
+}
 
-<div class="page-divider">Page 4 — Wednesday (Lower Body)</div>
+function buildDelta(day) {
+  const lines = [];
+  const already = copied[day] || { keys:[], notes:"", pain:null };
+  const newKeys = [];
+  allKeysForDay(day).forEach(([key,label,type]) => {
+    if (already.keys.includes(key)) return;
+    if (type === 'zone2') {
+      const z = getZone2(key);
+      if (!z.mode && !z.total && !z.z2) return;
+      const modeLabel = z.mode ? (z.mode.charAt(0).toUpperCase()+z.mode.slice(1)) : '?';
+      lines.push(`${label}: ${modeLabel} · Total ${z.total||'?'}min · Zone 2 ${z.z2||'?'}min`);
+      newKeys.push(key);
+    } else {
+      const st = get(key);
+      if (!st.status) return;
+      lines.push(`${label}: ${st.status==='yes'?'✓':'✗'}`);
+      newKeys.push(key);
+    }
+  });
+  const note = getNote(day);
+  const pain = getPain(day);
+  let extra = [];
+  if (note && note !== already.notes) extra.push(`Notes: ${note}`);
+  if (pain !== null && pain !== already.pain) extra.push(`Foot Pain: ${pain}/10`);
+  const text = [...lines, ...extra].join('\n');
+  return { text, newKeys, note, pain };
+}
 
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>WEDNESDAY — Lower Body</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr class="divider"><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr><td>Glute Bridge<span class="base">3×60s hold</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr><td>Clamshells (band)<span class="base">3×15 each</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr><td>Banded Lateral Walk<span class="base">3×15 steps</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr class="divider"><td>Side Plank<span class="base">3×30s each side</span></td><td class="future">n/a</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr><td>Kettlebell Knee Drive (was Cable Knee Drive)<span class="base">3×12 each</span></td><td class="future">n/a</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Cable Straight Leg Raise</td><td class="future">n/a</td><td class=""><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class=""><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class="flag"><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class="future">—</td><td class="future">—</td></tr><tr><td>Captain's Chair</td><td class=""><div class="cell-w">BW</div><div class="cell-r">10/3</div></td><td class=""><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class=""><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">22/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">22/3</div></td></tr><tr><td>Leg Press</td><td class=""><div class="cell-w">50kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">70kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">100kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">100kg</div><div class="cell-r">12/4</div></td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Hamstring Curl</td><td class=""><div class="cell-w">35kg</div><div class="cell-r">10/4</div></td><td class=""><div class="cell-w">37.5kg</div><div class="cell-r">10/4</div></td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td><td class="future">—</td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td></tr><tr><td>Single-Leg RDL</td><td class="cross flag">✗</td><td class=""><div class="cell-w">BW</div><div class="cell-r">8/3</div></td><td class="flag"><div class="cell-w">4kg DBs</div><div class="cell-r">8/3</div></td><td class="flag"><div class="cell-w">4kg DBs</div><div class="cell-r">8/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">4kg DBs</div><div class="cell-r">8/3</div></td></tr><tr><td>Goblet Squat</td><td class=""><div class="cell-w">20kg</div><div class="cell-r">10/3</div></td><td class=""><div class="cell-w">22.5kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">25kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">25kg</div><div class="cell-r">10/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Back Squat</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">8/4</div></td></tr><tr><td>Bulgarian Split Squat</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">8 each/3</div></td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>HOW TO — new this week: <b>Back Squat</b> — bar on upper traps (high bar), feet shoulder-width, toes slightly out. Brace core, sit hips back and down, knees track over toes. Depth: thighs to parallel or just below, stop short if the knee or foot protests. Drive up through the whole foot, not just toes. Priority this week is technique and how the knee/foot respond to axial loading, not the weight. <b>Bulgarian Split Squat</b> — rear foot up on a bench, laces down. Front foot far enough forward that the front knee stays roughly over the ankle at the bottom, not pushing past the toes. Torso upright, lower straight down until the back knee is close to the floor, drive up through the front heel. <b>Eccentric Heel Drops</b> — stand on a step edge, ball of foot on the step, heel hanging off. Rise up on both feet, shift weight onto the working foot, then lower that heel SLOWLY over 3-4 seconds below the step level. Bodyweight only this week — +10kg rucksack from Week 10, +15kg from Week 12. Mild discomfort during is fine; pain afterward means dial it back. <b>Ankle Hops</b> — both feet together, small low hops off the balls of the feet. Keep ground contact time as short as possible and stay stiff through the ankle — this is not a big bouncy jump, it's quick and springy. <b>Farmer's Walk on Toes</b> — walk 20m on the balls of both feet with the arch actively domed and core braced, then 20m walking on the heels with toes lifted, then 20m on the outer edges of the feet. Bodyweight this week, light DBs added from Week 10.</li><li>Glute Bridge, Wk1-2 — wrong single-leg elevated variant used (corrected 11 Jul). Wk3 — correct variant but 4×60s hold vs the 10-20s prescribed. Resolved Wk4 — 60s now the confirmed standard.</li><li>Clamshells/Banded Lateral Walk, Wk1 — wrong (too-light) bands until 8 Jul.</li><li>Wk1 — Single-Leg RDL not done, ran out of time.</li><li>Side Plank, Wk3 — first real attempt, 30s each side — became the standard immediately.</li><li>Wk3 — evening catch-up skipped entirely (football) — Goblet Squat, Side Plank and Zone 2 all missed that day.</li><li>Leg Press, Wk4 — jumped to 70kg instead of the planned 55kg step. Bigger increase than the standard 5kg rule calls for.</li><li>Wk5 (29 Jul, CONFIRMED) — Leg Press 100kg × 4 sets of 12 confirmed as the new working weight (top of the 90-100kg test range, properly hard by the end). Goblet Squat → 25kg. Hamstring Curl → 40kg. Single-Leg RDL loaded for the first time — 4kg DBs (only 4kg available, not the planned 2.5kg) — went well, good starting point. Single-Leg Balance (home, evening) progresses to eyes closed this week per the Phase 2 schedule (Bible Section 18).</li><li>Wk5 (corrected 30 Jul) — Clamshells, Banded Lateral Walk, Side Plank and Cable Knee Drive were NOT actually done on 29 Jul — originally logged as complete, Rob caught and corrected this the next day, no reason given for skipping. Foot pain that day was 3/10 — a bit higher than the recent 0-1 baseline, notably 'different' per Rob, possibly linked to the Leg Press jump to 100kg. Rob also reported significant fatigue that day.</li><li>Wk6 (PLANNED, agreed 2 Aug) — Leg Press, Hamstring Curl, Goblet Squat, Single-Leg RDL all HOLD — every one only 1 week at its current weight. Captain's Chair → 22×3. Single-Leg Balance holds at eyes closed rather than progressing to folded towel, since eyes-closed was never actually confirmed done in Week 5.</li><li>Wk8 (PLANNED, Phase 3 opens 18 Aug) — Bulgarian Split Squat added as NEW, bodyweight-only (DBs from Wk10). CORRECTED 18 Aug — Back Squat and Leg Press now ALTERNATE rather than both running every session (real overlap: both hit quads/glutes/hip extension, and session length had grown to 19 exercise blocks). Back Squat moves to Wednesdays only (40kg × 4×8, first session, technique/knee-foot response priority); Leg Press stays on Saturdays (100kg, HOLD). CORRECTED 23 Aug 2026 — this entry originally had the two lifts swapped; Rob confirmed actual split was Back Squat Wed, Leg Press Sat. Everything else (Hamstring Curl, Goblet Squat, Single-Leg RDL, Cable Straight Leg Raise) HOLDS. Captain's Chair 22×3 still untested — the Wk6 step was never actually attempted (Saturday missed entirely that week).</li></ul></div>
-</div>
+async function onCopyClick() {
+  const { text, newKeys, note, pain } = buildDelta(activeDay);
+  const btn = document.getElementById("copyBtn");
+  if (!text) {
+    btn.textContent = "Nothing new to copy"; btn.classList.add("nonew");
+    setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("nonew"); }, 1500);
+    return;
+  }
+  const full = `${DAYS[activeDay].full}\n${text}`;
+  try { await navigator.clipboard.writeText(full); }
+  catch(e) { const ta=document.createElement('textarea'); ta.value=full; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+  const prev = copied[activeDay] || { keys:[], notes:"", pain:null };
+  copied[activeDay] = { keys: [...prev.keys, ...newKeys], notes: note, pain: pain };
+  saveCopied();
+  btn.textContent = "Copied ✓"; btn.classList.add("copied");
+  setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("copied"); }, 2000);
+}
 
-
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>THURSDAY — Physio Only (rest day)</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>Physio-only day — standard rest day otherwise. Wk8 (21 Aug): Rob also did an optional one-off 30min Zone 2 (no Garmin data, watch not worn) — see Weekly HR Zone Load table. AM Rehab order fixed 22 Aug 2026: Feet Elevated Bridge, Toe Stretch, Forward Step Drill, High Knee Swaps, always in this order, every day.</li></ul></div>
-</div>
-
-
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>FRIDAY — Physio Only (main session by screenshot)</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>Physio-only day — main session (Hyrox WOD) tracked separately via Garmin screenshot on the Friday WOD Tracker page, not here. Wk8: warm-up and AM Zone 2 confirmed done via checklist; WOD itself confirmed done, splits/HR pending Garmin screenshot. AM Rehab order fixed 22 Aug 2026: Feet Elevated Bridge, Toe Stretch, Forward Step Drill, High Knee Swaps, always in this order, every day.</li><li>DAY CLOSED (21 Aug 2026): Foot pain 2/10. PM Rehab (all 5) and PM Zone 2 laid off tonight — Rob's explicit call, heavy DOMS/leg ache carrying from Wednesday's first loaded Back Squat plus today's WOD. Consistent with the plan discussed pre-session (train through DOMS, but let fatigue gate PM extras rather than push through everything). Not a compliance concern — one deliberate skip, not a pattern.</li></ul></div>
-</div>
-
-
-<div class="page-divider">Page 5 — Friday (WOD)</div>
-<div class="summary">
-  <div class="summary-header" style="background:#ff6b00">📊 Friday WOD Tracker — Station by Station, Week on Week</div>
-  <div style="padding:14px 10px;overflow-x:hidden">
-    <div style="font-size:10.5px;color:#666;margin-bottom:10px">Every station and rest gap, in order. Standard format: 2x Row/Wall Balls/Run/Wall Balls/Ski/Wall Balls (6 rounds), permanently comparable week to week.</div>
-    <table style="width:100%;border-collapse:collapse;font-size:8px;table-layout:fixed">
-      <colgroup><col style="width:16%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:14%"></colgroup>
-      <tr style="background:#ff6b00;color:white"><th style="padding:5px 2px;text-align:left;font-size:7.5px">Station</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 1 (3 Jul)</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 4 (24 Jul)</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 5 (31 Jul)</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 6 (7 Aug)</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 7 (14 Aug, DELOAD)</th><th style="padding:5px 1px;text-align:center;font-size:7.5px">Week 8 (21 Aug)</th></tr>
-      <tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Row 1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:29.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:10.9</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:21</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:15</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:14</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:35.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:01.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:58.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:52</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:19</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:25</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:37.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:31.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Run 1 (5 min cap)</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:10.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:00.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:04 @ 7km/h</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:00</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:01 @ 7.5km/h</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:34.5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:29.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:09.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:04.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:59</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:18</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:14</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:32.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Ski 1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:49.7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:30.5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:33</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:26</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:30</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:38.1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:35.7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:58.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:00</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:39</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">2:00</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:31.1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Row 2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:50.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:30.7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:29</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:31</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:29</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:33.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:31.2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:57.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:09.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:03</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">2:06</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:50</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:44.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Run 2 (5 min cap)</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:56.8</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:01.5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:00 @ 7km/h</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:01</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:01 @ 7.5km/h</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:04.3 (outlier)</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:45.3</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:02.1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:52</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:10</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:36</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.1</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.5</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Ski 2</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">5:20.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:32.0</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:23</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:28</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">4:39</td></tr><tr style="background:"><td style="padding:4px 2px;font-size:7.5px">Rest</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:31.6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30.7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:30</td></tr><tr style="background:#f5f5f3"><td style="padding:4px 2px;font-size:7.5px">Wall Balls 6</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:21.7</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:59.4</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">0:53</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">1:29</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:4px 1px;text-align:center;word-wrap:break-word">2:10</td></tr>
-      <tr style="background:#1a1a1a;color:white;font-weight:700"><td style="padding:5px 2px;font-size:7px">TOTAL — Full WOD (6 rounds, Like-for-Like, all weeks)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">44:15</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">39:39.3</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">39:02</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">42:13</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">43:40</td></tr><tr style="background:#fff7d6;font-weight:700"><td style="padding:5px 2px;font-size:7px">Wall Ball Total (6 sets, work time only)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">7:51.5</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">6:12</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">5:39</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:01</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">10:15</td></tr><tr style="background:#fff7d6;font-weight:700"><td style="padding:5px 2px;font-size:7px">Row+Run+Ski Total (6 stations, work time only)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">29:36.7</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">27:46</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">27:50</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">27:41</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">27:54</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Avg HR / Max HR</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">140 / 168</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">155 / 179</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">151 / 166</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">157 / — (199 logged, sensor artifact, disregarded)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">154 / 179</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Zone 1 (92–109)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:58</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:20</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:20</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:08</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:28</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Zone 2 (110–139)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">28:38</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:25</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">2:44</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:32</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:20</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Zone 3 (140–155)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">29:04</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">14:24</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">24:31</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">21:50</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">19:15</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Zone 4 (156–168)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">9:19</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">21:59</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">11:13</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">10:54</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">22:03</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Zone 5 (169+)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">1:01</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:00</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">7:36</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">0:22</td></tr><tr style="background:#e5e5e5;font-weight:700"><td style="padding:5px 2px;font-size:7px">Wall ball weight</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">4kg</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">4kg</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">4kg (held)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">6kg — CONFIRMED, jump landed</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">6kg — held, 2nd week</td></tr><tr style="background:#fef3c7;font-weight:700"><td style="padding:5px 2px;font-size:7px">Exercise Load (Garmin)</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">No data</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">180</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">159</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">255</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">—</td><td style="padding:5px 1px;text-align:center;word-wrap:break-word">199</td></tr>
-    </table>
-    <div class="lean-footnotes" style="margin-top:8px">Current operating facts: run is time-capped at 5 min (not distance), splits always read ~5:00 by design — treadmill speed (7km/h) is the real metric. Week 4: Garmin auto-lap/rest didn't trigger (manual splitting, real rest variation). Round 1 order run in error as Row–Ski–Run — station times filed by actual identity, not chronological position. A 3rd round (Rounds 7-8) was trialled Week 5 but never actually completed in any week — discontinued permanently 07 Aug 2026 at Rob's request; standard format is and remains 6 rounds. <b>Exercise Load</b> (added 26 Jul 2026) is Garmin's per-activity EPOC-based intensity×duration score — physiological cost, separate from performance. Wk6's jump to 255 (from 159) reflects the wall ball weight increase to 6kg, not a fitness concern.</div>
-  </div>
-</div>
-
-<div class="page-divider">Page 6 — Saturday (Lower Body)</div>
-
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>SATURDAY — Lower Body</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Feet Elevated Bridge<span class="base">3×60s</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Toe Stretch<span class="base">2×60s</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="tick flag">✓</td></tr><tr><td>Forward Step Drill<span class="base">30 each foot</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="tick">✓</td></tr><tr class="divider"><td>High Knee Swaps<span class="base">2×60s continuous</span></td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="tick">✓</td></tr><tr><td>Glute Bridge<span class="base">3×60s hold</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="future">—</td></tr><tr><td>Clamshells (band)<span class="base">3×15 each</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Banded Lateral Walk<span class="base">3×15 steps</span></td><td class="tick flag">✓</td><td class="tick">✓</td><td class="cross flag">✗</td><td class="future">—</td><td class="future">—</td><td class="tick">✓</td></tr><tr class="divider"><td>Side Plank<span class="base">3×30s each side</span></td><td class="future">n/a</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="tick">✓</td></tr><tr><td>Kettlebell Knee Drive (was Cable Knee Drive)<span class="base">3×12 each</span></td><td class="future">n/a</td><td class="tick">✓</td><td class="tick">✓</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Cable Straight Leg Raise</td><td class="future">n/a</td><td class=""><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class=""><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class="flag"><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">2.5kg</div><div class="cell-r">15/3</div></td></tr><tr><td>Captain's Chair</td><td class=""><div class="cell-w">BW</div><div class="cell-r">10-15/3</div></td><td class=""><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">20/3</div></td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">22/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">BW</div><div class="cell-r">22/3</div></td></tr><tr><td>Leg Press</td><td class=""><div class="cell-w">50kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">70kg</div><div class="cell-r">AMRAP 35</div></td><td class="flag"><div class="cell-w">100kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">100kg</div><div class="cell-r">12/4</div></td><td class="future">—</td><td class="flag"><div class="cell-w">100kg</div><div class="cell-r">12/4</div></td></tr><tr><td>Hamstring Curl</td><td class=""><div class="cell-w">35kg</div><div class="cell-r">10/4</div></td><td class=""><div class="cell-w">37.5kg</div><div class="cell-r">10/4</div></td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td><td class="future">—</td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">10/4</div></td></tr><tr><td>Hip Thrust</td><td class=""><div class="cell-w">50kg</div><div class="cell-r">12/4 bar</div></td><td class=""><div class="cell-w">40kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">12/4</div></td><td class="flag"><div class="cell-w">45kg</div><div class="cell-r">12/4</div></td><td class="future">—</td><td class="flag"><div class="cell-w">40kg</div><div class="cell-r">12/4</div></td></tr><tr><td>Single-Leg RDL</td><td class=""><div class="cell-w">BW</div><div class="cell-r">8/3</div></td><td class="cross flag">✗</td><td class="flag"><div class="cell-w">2.5kg DBs</div><div class="cell-r">8/3</div></td><td class="flag"><div class="cell-w">4kg DBs</div><div class="cell-r">8/3</div></td><td class="future">—</td><td class="flag"><div class="cell-w">4kg DBs</div><div class="cell-r">8/3</div></td></tr><tr><td>Goblet Squat</td><td class="flag"><div class="cell-w">22kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">20kg</div><div class="cell-r">12/12/20</div></td><td class="flag"><div class="cell-w">25kg</div><div class="cell-r">10/3</div></td><td class="flag"><div class="cell-w">25kg</div><div class="cell-r">10/3</div></td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Back Squat</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a</td></tr><tr><td>Bulgarian Split Squat</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">n/a (Wed only)</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>HOW TO — new this week: <b>Back Squat</b> — bar on upper traps (high bar), feet shoulder-width, toes slightly out. Brace core, sit hips back and down, knees track over toes. Depth: thighs to parallel or just below, stop short if the knee or foot protests. Drive up through the whole foot, not just toes. Priority this week is technique and how the knee/foot respond to axial loading, not the weight. <b>Bulgarian Split Squat</b> — rear foot up on a bench, laces down. Front foot far enough forward that the front knee stays roughly over the ankle at the bottom, not pushing past the toes. Torso upright, lower straight down until the back knee is close to the floor, drive up through the front heel. <b>Eccentric Heel Drops</b> — stand on a step edge, ball of foot on the step, heel hanging off. Rise up on both feet, shift weight onto the working foot, then lower that heel SLOWLY over 3-4 seconds below the step level. Bodyweight only this week — +10kg rucksack from Week 10, +15kg from Week 12. Mild discomfort during is fine; pain afterward means dial it back. <b>Ankle Hops</b> — both feet together, small low hops off the balls of the feet. Keep ground contact time as short as possible and stay stiff through the ankle — this is not a big bouncy jump, it's quick and springy. <b>Farmer's Walk on Toes</b> — walk 20m on the balls of both feet with the arch actively domed and core braced, then 20m walking on the heels with toes lifted, then 20m on the outer edges of the feet. Bodyweight this week, light DBs added from Week 10.</li><li>Glute Bridge, Wk1 — wrong single-leg elevated variant (corrected 11 Jul, this week). Wk3 — correct variant but 4×60s hold vs the 10-20s prescribed. Resolved Wk4.</li><li>Clamshells/Banded Lateral Walk, Wk1 — wrong (too-light) bands until 8 Jul.</li><li>Side Plank, Wk3 — first real attempt, 30s each side.</li><li>Leg Press, Wk4 — AMRAP'd to 35 reps at 70kg, too light, testing 90-100kg next.</li><li>Hip Thrust, Wk3 — switched barbell → Cutler machine, 40kg not comparable to old 50kg number.</li><li>Goblet Squat, Wk1-2 — logged 22kg on Saturdays vs 20kg the same weeks' Wednesdays, real inconsistency. Wk4 — 20kg, 12/12/20 reps, too light, next target 25kg.</li><li>Single-Leg RDL, Wk4 — not yet done as of this session.</li><li>Wk5 (PLANNED) — Leg Press testing 90-100kg, controlled 4×10-12 not another AMRAP. Goblet Squat → 25kg. Hamstring Curl → 40kg (matching Wednesday). Hip Thrust held — only 2 weeks on Cutler machine, Rob genuinely feeling it in the glutes at 40kg. Single-Leg RDL loaded for the first time, 2.5kg DBs. Single-Leg Balance (home, evening) progresses to eyes closed this week per the Phase 2 schedule.</li><li>Wk6 (PLANNED, agreed 2 Aug) — Hip Thrust → 45kg (3 clean weeks at 40kg on the Cutler machine, past the usual gate). Captain's Chair → 22×3. Leg Press, Hamstring Curl, Goblet Squat, Single-Leg RDL all HOLD. Single-Leg RDL's actual Saturday weight from Week 5 was never confirmed by Rob — planning on 4kg (matching Wednesday) pending that check.</li><li>Wk8 (PLANNED, Phase 3 opens 18 Aug) — Back Squat added as NEW, starts 40kg × 4×8 — set from current lower-body strength context (Leg Press 100kg, Goblet Squat 25kg) rather than the stale Jun/Jul 2024 1RM (70kg). First-session priority is technique and knee/foot response to axial loading. Bulgarian Split Squat added as NEW, bodyweight-only (DBs from Wk10). CORRECTED 18 Aug — Leg Press dropped from Wednesday this week: Back Squat and Leg Press now ALTERNATE (Back Squat Wed, Leg Press Sat) rather than both running every session, given the real movement overlap and session length. CORRECTED 23 Aug 2026 — this entry originally had the two days swapped; Rob confirmed actual split was Back Squat Wed, Leg Press Sat. Hip Thrust REVERTS to 40kg — the Wk6 jump to 45kg never actually happened (that Saturday was missed entirely). The 45kg attempt is still owed. Captain's Chair 22×3 also still untested for the same reason. Everything else (Hamstring Curl, Goblet Squat, Single-Leg RDL, Cable Straight Leg Raise) HOLDS.</li><li>REHAB RESTRUCTURE (20 Aug 2026, Rob's request): the morning physio block had grown to as many as 12 exercises on lower-body days and was running 30+ minutes, crowding out the actual weights session. Three changes made: (1) Glute Bridge DISCONTINUED — redundant now Back Squat/Hip Thrust/RDL provide real glute loading, and Feet Elevated Bridge covers the same pattern harder. Daily physio block is now 3 exercises (Forward Step Drill, High Knee Swaps, Feet Elevated Bridge), not 4. (2) Cable Knee Drive renamed Kettlebell Knee Drive and re-equipped — the cable+ankle-cuff setup wasn't working for Rob and had been failing to happen for weeks; now a kettlebell hooked over the foot, hanging, standing knee drive, same target, no cable machine needed. (3) Eccentric Heel Drops, Ankle Hops, and Farmer's Walk on Toes MOVED from the Wed/Sat morning session to every evening at home, replacing the towel scrunches/toe spreading slot that had been going mostly undone for weeks. Net effect: mornings drop to 3 physio + (Wed/Sat only) Clamshells, Banded Lateral Walk, Side Plank, Kettlebell Knee Drive — roughly 12-17 minutes shorter. Evenings go from 2 neglected exercises to 5 substantial ones. Clamshells and Banded Lateral Walk also re-specified as no-band-needed bodyweight versions (manual resistance / monster-walk) given the fabric band has gone missing again.</li><li>DAY CLOSED (Sat 22 Aug 2026): AM Rehab (all 4) and warm-up (10min bike, Z2) done. Glute Activation: Banded Lateral Walk and Side Plank done; Clamshells and Kettlebell Knee Drive NOT done. Workout: Cable Straight Leg Raise, Captain's Chair, Leg Press, Hamstring Curl, Hip Thrust all done at HOLD values; Goblet Squat and Single-Leg RDL NOT done. Foot pain 1/10. Bulgarian Split Squat was mistakenly duplicated onto this page in an earlier build — it's a Wednesday-only exercise this week (see Wednesday page) and has been removed here.</li><li>DAILY CHECKLIST INTERPRETATION RULE (23 Aug 2026, Rob's standing instruction): the Daily Checklist's Copy function only includes items Rob has explicitly ticked or crossed — anything he hasn't touched is simply absent from what gets pasted. Going forward: ticked = done, crossed = not done, and absent (no mark either way) = also treated as not done, same as crossed. No more asking whether an absence means "unknown" — blank is a clear signal.</li><li>generate_bible.py filename now VERSIONED (20 Aug 2026, Rob's request): previously always saved as plain generate_bible.py, which overwrites the same filename every time and sinks to the bottom of file storage sorted by name rather than recency, making it hard to find. From now on, present and save it as generate_bible_v[BIBLE_VERSION]_[DDMonYYYY].py — same version number as the Bible PDF, since they always change together. This applies every time the script is presented, not just on request.</li><li>AM Rehab reordered + Toe Stretch moved from PM (22 Aug 2026, Rob's request): daily physio block is now fixed at Feet Elevated Bridge, Toe Stretch, Forward Step Drill, High Knee Swaps, always in this exact order, every training day. Toe Stretch moved here from PM Rehab, still 2×60s — CORRECTED same day (22 Aug 2026): initially logged as reduced to 1×60s with the move, but Rob confirmed he actually performs 2×60s in the morning too, so the dose was never actually reduced. PM Rehab no longer includes Toe Stretch. Applies to Section 4 in the Bible, all 6 day exercise grids on the Card, and the AM Rehab section of the Daily Workouts page.</li><li>CALENDAR DIARY DISCONTINUED, replaced by the Daily Checklist (20 Aug 2026, Rob's request): Google Calendar event creation/updates for training sessions are STOPPED going forward — Rob doesn't want them maintained anymore. Replaced by a new third build output, the Daily Checklist (Daily_Checklist_Wk[N]_v[CHECKLIST_VERSION].html — VERSIONED filename as of 22 Aug 2026, reversing an earlier same-day decision to keep it fixed: the fixed name never sorted to the top of Rob's Files app and he was re-adding it to his home screen weekly regardless, so it now matches the Bible/Card versioning convention instead) — an interactive HTML page with a tab per day (Mon-Sun), each split into 3 sections: AM Rehab (physio + Wed/Sat glute activation), Workout (every exercise individually ticked yes/no, full detail same standard as the old calendar entries — including full session detail for Tue/Fri/Sun which previously stayed screenshot-only), and PM Rehab (evening foot work + Foot Pain 1-10 + PM Zone 2 tick). Warm-up and Zone 2 each get their own yes/no — Zone 2 specifically has TWO independent buttons, one in Workout (AM) and one in PM Rehab (PM), so either slot can be ticked without ambiguity. One shared Notes box per day for free text (weight changes, issues, anything). One Copy button per day — sends only what's new since the last press that day, so pressing it once in the morning and again in the evening never duplicates the AM data. Rob pastes the copied summary into chat; Claude logs it into the Card and Bible exactly as before — the checklist is a data-entry front end, not a replacement for the Card/Bible's role as the permanent record. Rebuilt fresh every week alongside the Card, using that week's actual exercise data, so it never drifts out of sync with what's currently planned.</li><li>HOLD DATA UNTIL EXPLICIT LOAD-IN SIGNAL (22 Aug 2026, Rob's standing instruction): when Rob sends training data across multiple messages (screenshots, checklist copies, voice notes) in one session, Claude does NOT write anything to the Card or Bible until Rob gives a clear signal that everything's in — e.g. "that's it," "load it in," "process this." Acknowledge receipt of each piece as it arrives, but hold it rather than processing incrementally. Writing to the Card/Bible after every partial piece of data forces multiple regenerations and validation passes for what should be one clean write, and makes Rob wait longer between sending data and being ready for the next thing. If it's genuinely unclear whether more data is coming, ask rather than assume the session's finished. This replaces the previous default of processing data as soon as it looked complete.</li></ul></div>
-</div>
-
-
-<div class="lean-page">
-<div class="lean-header ">
-  <h2>PM REHAB — Every Evening, At Home</h2>
-  <p>Physio + activation = tick (base prescription under name). Weighted lifts = weight/reps. ★ = flag, footnotes below.</p>
-</div>
-<div class="lean-wrap">
-<table>
-  <tr><th>Exercise</th><th>1</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
-  <tr><td>Towel Scrunches<span class="base">3×20</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Toe Spreading + Extension<span class="base">2×15</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Eccentric Heel Drops<span class="base">3×15, BW</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Ankle Hops<span class="base">3×15</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr><tr><td>Farmer's Walk on Toes<span class="base">3×20m, BW (DBs from Wk10)</span></td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="future">—</td><td class="cross flag">✗</td></tr>
-</table>
-</div>
-<div class="lean-footnotes"><strong>Flags:</strong><ul><li>Every night, at home — not the gym. Toe Stretch MOVED to AM Rehab 22 Aug 2026 (still 2×60s, second of the daily 4) — no longer here. Eccentric Heel Drops: ball of foot on a step edge, heel hanging off, rise on both feet, shift weight to the working foot, lower SLOWLY over 3-4 secs below step level — BW this week, +10kg rucksack Wk10, +15kg Wk12. Ankle Hops: both feet together, small low hops off the balls of the feet, minimal ground contact, stiff through the ankle. Farmer's Walk on Toes: 20m on balls of both feet (arch domed, core braced), then 20m on heels (toes lifted), then 20m on outer edges — BW this week, light DBs from Wk10.</li></ul></div>
-</div>
-
-
-<div class="page-divider">Weekly HR Zone Tracker</div>
-<div class="summary">
-  <div class="summary-header">⌚ Weekly Heart Rate Zone Tracker — Cardio Only</div>
-  <div style="padding:14px 10px">
-    <div style="font-size:10.5px;color:#666;margin-bottom:10px">Warm-ups, Zone 2, row intervals, WOD only. Zones: Z1 92–109 · Z2 110–139 · Z3 140–155 · Z4 156–168 · Z5 169+ BPM.</div>
-    <div class="lean-wrap">
-    <table style="width:100%;border-collapse:collapse;font-size:9px;table-layout:fixed">
-      <colgroup><col style="width:23%"><col style="width:12.5%"><col style="width:12.5%"><col style="width:12.5%"><col style="width:12.5%"><col style="width:12.5%"><col style="width:14.5%"></colgroup>
-      <tr style="background:#1a56db;color:#fff"><th>Session</th><th>Z1</th><th>Z2</th><th>Z3</th><th>Z4</th><th>Z5</th><th>Total</th></tr>
-      <tr><td>Mon w-up</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Mon Z2</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Tue w-up</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Tue row</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Tue Z2</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Wed w-up</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Wed Z2</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Thu (rest day)</td><td colspan="6" style="text-align:center;font-style:italic;color:#888">No cardio tracked — standard rest day</td></tr><tr><td>Fri w-up</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Fri WOD</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Fri cool-down</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Sat w-up</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Sat Z2</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr><tr><td>Sun Z2 (row-only, 70min target)</td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:600'></td></tr>
-      <tr><td style="background:#1a1a1a;color:#fff;font-weight:700">WEEK 1 (final)</td><td style="background:#1a1a1a;color:#fff;text-align:center">21.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">220.8m</td><td style="background:#1a1a1a;color:#fff;text-align:center">37.6m</td><td style="background:#1a1a1a;color:#fff;text-align:center">14.8m</td><td style="background:#1a1a1a;color:#fff;text-align:center">0m</td><td style="background:#1a1a1a;color:#fff;text-align:center;font-weight:700">294.7m</td></tr><tr><td style="background:#1a1a1a;color:#fff;font-weight:700">WEEK 2 (final)</td><td style="background:#1a1a1a;color:#fff;text-align:center">10.7m</td><td style="background:#1a1a1a;color:#fff;text-align:center">216.9m</td><td style="background:#1a1a1a;color:#fff;text-align:center">31.3m</td><td style="background:#1a1a1a;color:#fff;text-align:center">16.1m</td><td style="background:#1a1a1a;color:#fff;text-align:center">2.1m</td><td style="background:#1a1a1a;color:#fff;text-align:center;font-weight:700">277.1m</td></tr><tr><td style="background:#1a1a1a;color:#fff;font-weight:700">WEEK 3 (final)</td><td style="background:#1a1a1a;color:#fff;text-align:center">5.3m</td><td style="background:#1a1a1a;color:#fff;text-align:center">149.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">28.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">23.8m</td><td style="background:#1a1a1a;color:#fff;text-align:center">0.4m</td><td style="background:#1a1a1a;color:#fff;text-align:center;font-weight:700">208.0m</td></tr><tr><td style="background:#1a1a1a;color:#fff;font-weight:700">WEEK 4 (final)</td><td style="background:#1a1a1a;color:#fff;text-align:center">13.0m</td><td style="background:#1a1a1a;color:#fff;text-align:center">237.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">26.2m</td><td style="background:#1a1a1a;color:#fff;text-align:center">30.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">3.9m</td><td style="background:#1a1a1a;color:#fff;text-align:center;font-weight:700">311.1m</td></tr><tr><td style="background:#1a1a1a;color:#fff;font-weight:700">WEEK 5 (final)</td><td style="background:#1a1a1a;color:#fff;text-align:center">10.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">150.8m</td><td style="background:#1a1a1a;color:#fff;text-align:center">50.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center">18.7m</td><td style="background:#1a1a1a;color:#fff;text-align:center">2.5m</td><td style="background:#1a1a1a;color:#fff;text-align:center;font-weight:700">233.0m</td></tr><tr><td style="background:#94a3b8;color:#fff;font-weight:700">WEEK 7 (Sun only, deload)</td><td style="background:#94a3b8;color:#fff;text-align:center">0.2m</td><td style="background:#94a3b8;color:#fff;text-align:center">8.5m</td><td style="background:#94a3b8;color:#fff;text-align:center">12.9m</td><td style="background:#94a3b8;color:#fff;text-align:center">7.7m</td><td style="background:#94a3b8;color:#fff;text-align:center">0.7m</td><td style="background:#94a3b8;color:#fff;text-align:center;font-weight:700">29.4m</td></tr>
-      <tr><td style="background:#1a56db;color:#fff;font-weight:700">WEEK 8 (so far)</td><td style="background:#1a56db;color:#fff;text-align:center">1.5m</td><td style="background:#1a56db;color:#fff;text-align:center">62.6m</td><td style="background:#1a56db;color:#fff;text-align:center">10.7m</td><td style="background:#1a56db;color:#fff;text-align:center">22.2m</td><td style="background:#1a56db;color:#fff;text-align:center">0.4m</td><td style="background:#1a56db;color:#fff;text-align:center;font-weight:700">97.4m</td></tr>
-    </table>
-    </div>
-    <div class="lean-footnotes" style="margin-top:8px">Week 3's drop reflects 3 missed/incomplete Zone 2 sessions. Z4 has climbed every week (14.8 → 16.1 → 23.8 → 30.5m so far) while total Zone 2 volume has trended down — worth watching. Three warm-up sessions this month had wrist-sensor artifacts (sudden fake Z4/Z5 spikes on gentle rides) — Rob's manual confirmation was used over the raw Garmin reading each time. Wed Z2 (29 Jul) split across two machines (row 10min, kicked out of the room, then bike 30min) — the 1:06 Z3 reading on the row portion was a sensor blip per Rob, not real effort; recorded as read but disregarded in interpretation. Friday evening's Zone 2 was also missed (1 Aug). Saturday's post-weights Zone 2 not done as of the session — Rob aiming to get it done Saturday night. Full 16-week chart in Bible Section 16.</div>
-    <div class="lean-footnotes" style="margin-top:4px;background:#e0f2fe;border-color:#7dd3fc">Wk5 methodology change (agreed 26 Jul 2026): Sunday long Zone 2 moves to single-modality sessions — one machine, uninterrupted, no more splitting a session across two pieces of equipment. Rationale: continuous single-modality effort trains sustained aerobic adaptation genuinely differently from split sessions, and directly rehearses the 2027 marathon demand of staying in one movement pattern for a long duration. Bike-only Sundays hit the full 75-min Phase 2 target immediately — already proven clean. Row-only Sundays get their own build-up instead (longest continuous row to date was only ~40 min): 45 min Wk5, climbing toward 75 over 2-3 weeks — treated as its own progression, not a Zone 2 shortfall. A row-only week landing under 75 min is expected and correct, not a miss.</div>
-    <div class="lean-footnotes" style="margin-top:4px">Week 6 and Week 7 rows are missing/partial in this table — Week 6 was never finalised into it, and Week 7 (deload) only has the retroactively-added Sunday row (30min continuous, self-titled "NOT zone2" — 68% of it was Z3/Z4, tempo rather than easy aerobic). Week 8 "so far" currently reflects only Friday's WOD (Z4/Z5 only, no Z1-3 breakdown available) and Sunday's row (1:18:00.8, no warm-up, longest continuous row on record); Mon/Tue/Wed Zone 2 sessions this week are not yet included — pending.</div>
-  </div>
-</div>
-
-
-<div class="page-divider">Weekly Compliance</div>
-<div class="summary">
-  <div class="summary-header">👣 Weekly Compliance Tracker — Pain, Bed Sequence, Balance, Steps</div>
-  <div style="padding:14px 10px">
-    <div class="lean-wrap">
-    <table style="width:100%;border-collapse:collapse;font-size:9.5px;table-layout:fixed">
-      <colgroup><col style="width:22%"><col style="width:20%"><col style="width:22%"><col style="width:18%"><col style="width:18%"></colgroup>
-      <tr style="background:#7c3aed;color:#fff"><th>Day</th><th>Foot Pain</th><th>Bed Sequence</th><th>Balance</th><th>Steps</th></tr>
-      <tr><td>Mon 03 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Tue 04 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Wed 05 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Thu 06 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Fri 07 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Sat 08 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr><tr><td>Sun 09 Aug</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td><td class="tbc">TBC</td></tr>
-      <tr><td style="background:#1a56db;color:#fff;font-weight:700">WK8 SUMMARY</td><td style="background:#1a56db;color:#fff;text-align:center">TBC</td><td style="background:#1a56db;color:#fff;text-align:center">TBC</td><td style="background:#1a56db;color:#fff;text-align:center">TBC</td><td style="background:#1a56db;color:#fff;text-align:center">TBC</td></tr>
-    </table>
-    </div>
-    <div class="lean-footnotes" style="margin-top:8px">Week 5 final: avg pain ~2.0, logged every day (real improvement on Wk4). Bed sequence, single-leg balance and steps were never actually captured, two weeks running — decided at the Wk6 transition to keep asking daily rather than change approach. Ask for all 4 fields every day this week.</div>
-  </div>
-</div>
-
-
-<div class="page-divider">Prior Training Block Reference (2025)</div>
-<div class="summary">
-  <div class="summary-header">📚 Prior Training Block Reference — 2025 (historical, not part of active progression)</div>
-  <div style="padding:14px 10px">
-    <div style="font-size:10.5px;color:#666;margin-bottom:10px">Historical strength data from before the current 16-week programme (started 29 Jun 2026). Reference only — weights and machines differ from the current setup, not tracked in the weekly progression tables above.</div>
-    <div style="font-weight:700;font-size:11px;margin:10px 0 4px">Upper Body Block — 18 Jul 2025 to 17 Sep 2025 (9 weeks)</div>
-    <div class="lean-wrap">
-    <table style="width:100%;border-collapse:collapse;font-size:9px;table-layout:fixed">
-      <colgroup><col style="width:26%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:32%"></colgroup>
-      <tr style="background:#555555;color:#fff"><th>Exercise</th><th>Sets×Reps</th><th>Start</th><th>End</th><th>Notes</th></tr>
-      <tr><td>Bench Press</td><td>3x10</td><td>55kg</td><td>60kg</td><td style='font-size:8px'>Smith machine, not free weight — easier than free barbell; felt the difference on switching later</td></tr><tr><td>Barbell Overhead Press</td><td>4x10</td><td>30kg</td><td>25kg</td><td style='font-size:8px'>Weight dropped — mild shoulder pain toward the end</td></tr><tr><td>Incline DB Chest Press</td><td>3x15</td><td>12kg/side</td><td>14kg/side</td><td style='font-size:8px'>—</td></tr><tr><td>Lat Pulldown</td><td>4x10</td><td>61kg</td><td>63.5kg</td><td style='font-size:8px'>—</td></tr><tr><td>Seated Row</td><td>4x15</td><td>40kg</td><td>50kg</td><td style='font-size:8px'>Pulley (20kg/side=40kg total) → stack machine near end of block — held 40kg most of the block, jumped to 50kg on the switch</td></tr><tr><td>Dead Hangs</td><td>—</td><td>—</td><td>—</td><td style='font-size:8px'>Included, no load/duration data recorded</td></tr><tr><td>Barbell Rollouts</td><td>—</td><td>—</td><td>—</td><td style='font-size:8px'>Included, no load/duration data recorded</td></tr><tr><td>Copenhagen Planks</td><td>—</td><td>—</td><td>—</td><td style='font-size:8px'>Included, no load/duration data recorded</td></tr>
-    </table>
-    </div>
-    <div style="font-weight:700;font-size:11px;margin:14px 0 4px">Lower Body Block — 24 Aug 2025 to 30 Aug 2025 (5 sessions)</div>
-    <div class="lean-wrap">
-    <table style="width:100%;border-collapse:collapse;font-size:9px;table-layout:fixed">
-      <colgroup><col style="width:26%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:32%"></colgroup>
-      <tr style="background:#555555;color:#fff"><th>Exercise</th><th>Sets×Reps</th><th>Start</th><th>End</th><th>Notes</th></tr>
-      <tr><td>Box Jumps</td><td>3x20</td><td>—</td><td>—</td><td style='font-size:8px'>Bodyweight/plyo, no load data</td></tr><tr><td>Barbell Back Squat</td><td>4x8</td><td>50kg</td><td>55kg</td><td style='font-size:8px'>—</td></tr><tr><td>Bulgarian Split Squat</td><td>4x10</td><td>30kg</td><td>30kg</td><td style='font-size:8px'>Flat — no progression across block</td></tr><tr><td>RDL (Romanian Deadlift)</td><td>4x10</td><td>50kg</td><td>55kg</td><td style='font-size:8px'>—</td></tr><tr><td>Calf Raises</td><td>3x15</td><td>80kg</td><td>80kg</td><td style='font-size:8px'>Smith machine; flat — no progression</td></tr><tr><td>Pistol Squats (single leg)</td><td>3x20/leg</td><td>20kg</td><td>20kg</td><td style='font-size:8px'>Weighted, flat — no progression</td></tr><tr><td>Leg Press Machine</td><td>4x10</td><td>37.5kg</td><td>37.5kg</td><td style='font-size:8px'>Flat — no progression</td></tr>
-    </table>
-    </div>
-    <div class="lean-footnotes" style="margin-top:8px">Barbell Thrusters were considered for the lower body block but crossed out in Rob's original notes — confirmed not actually performed, excluded from this table. Back Squat here (50→55kg, Aug 2025) is a more current anchor than the stale Jun/Jul 2024 1RM (70kg) — used to help set Week 8's Phase 3 Back Squat starting weight (40kg).</div>
-  </div>
-</div>
-
-
-<div class="page-divider">Reference — All-Time Stats & Race History</div>
-<div class="lean-page">
-<div class="lean-header" style="background:#0d0d0d">
-  <h2>ALL-TIME STATS — Race History & PBs</h2>
-  <p>Career database, separate from the 16-week plan's weekly trackers.</p>
-</div>
-<div class="section-title">HYROX RACE HISTORY</div>
-<div class="lean-wrap" style="margin-bottom:14px">
-<table class="stats-table">
-  <tr><th>#</th><th>Date</th><th>Location</th><th>Type</th><th>Finish</th><th>Phase</th></tr>
-  <tr><td>1</td><td>26 Oct 2024</td><td>Birmingham</td><td>Single</td><td>2:04:10</td><td>Coached</td></tr><tr><td>2</td><td>10 Nov 2024</td><td>Manchester</td><td>Doubles Mixed</td><td>1:38:32</td><td>Coached</td></tr><tr><td>3</td><td>28 Jan 2025</td><td>Manchester</td><td>Single</td><td>1:44:52</td><td>Coached</td></tr><tr><td>4</td><td>05 May 2025</td><td>London</td><td>Doubles Mixed</td><td>1:34:45</td><td>Coached</td></tr><tr><td>5</td><td>25 Oct 2025</td><td>Birmingham</td><td>Single</td><td>1:52:48</td><td>Self-trained</td></tr><tr><td>6</td><td>06 Dec 2025</td><td>London ExCeL</td><td>Single</td><td>1:45:33</td><td>Self-trained</td></tr>
-  <tr><td colspan="4" style="text-align:left;padding-left:8px">SINGLE PB</td><td class="pb-cell" colspan="2">1:44:52 — Manchester, 28 Jan 2025</td></tr>
-  <tr><td colspan="4" style="text-align:left;padding-left:8px">DOUBLES PB</td><td class="pb-cell" colspan="2">1:34:45 — London, 05 May 2025</td></tr>
-</table>
-</div>
-<div class="section-title">RUNNING HISTORY</div>
-<div class="lean-wrap">
-<table class="stats-table">
-  <tr><th>Event</th><th>Result</th><th>Date</th></tr>
-  <tr><td>Half Marathon — Bath</td><td class="pb-cell">2:10:21</td><td>01 Mar 2015</td></tr><tr><td>Marathon — London</td><td class="pb-cell">5:24:35</td><td>26 Apr 2009</td></tr>
-</table>
-</div>
-<div class="section-title">LONDON MARATHON 2009 — FULL SPLITS (official chip data)</div>
-<div class="lean-wrap" style="margin-bottom:6px">
-<table class="stats-table">
-  <tr><th>Segment</th><th>Split Time</th><th>Speed (km/h)</th></tr>
-  <tr><td>0-5k</td><td>31:02</td><td>9.66</td></tr><tr><td>5-10k</td><td>31:55</td><td>9.40</td></tr><tr><td>10-15k</td><td>33:56</td><td>8.84</td></tr><tr><td>15-20k</td><td>37:12</td><td>8.06</td></tr><tr><td>20-25k</td><td>39:39</td><td>7.57</td></tr><tr><td>25-30k</td><td>43:40</td><td>6.87</td></tr><tr><td>30-35k</td><td>47:00</td><td>6.38</td></tr><tr><td>35-40k</td><td>44:17</td><td>6.77</td></tr><tr><td>40k-Finish</td><td>15:54</td><td>8.30*</td></tr>
-</table>
-</div>
-<div style="font-size:9px;color:#999;font-style:italic;margin-bottom:14px">*Final segment is ~2.195km (not 5km), so speed is calculated on that shorter distance. "Speed" here is km/h, not min/km pace — higher number = faster. Chip splits, exact: 5k 31:02 · 10k 1:02:57 · 15k 1:36:53 · 20k 2:14:05 · 25k 2:53:44 · 30k 3:37:24 · 35k 4:24:24 · 40k 5:08:41.</div>
-</div>
-
-<div class="footer">Week 8 of 16 — Phase 3: Load & Strength · Card v76<br>Generated by generate_bible.py (card module)</div>
-</body></html>
+(async () => { await loadState(); render(); })();
+</script>
+</body>
+</html>
