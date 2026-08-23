@@ -42,6 +42,7 @@
   .row-top { display:flex; align-items:center; gap:10px; }
   .ex-info { flex:1; min-width:0; }
   .ex-name { font-size:16px; font-weight:800; line-height:1.25; }
+  .run-badge { display:inline-block; background:var(--accent); color:#0d0d0d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:10px; vertical-align:middle; margin-left:4px; }
   .ex-target { font-size:11px; font-weight:600; color:var(--muted); margin-top:2px; }
   .ex-flag { font-size:10.5px; color:var(--text); opacity:0.8; margin-top:3px; line-height:1.3; font-weight:700; }
   .btns { display:flex; gap:5px; flex:0 0 auto; }
@@ -100,7 +101,7 @@
 // screenshot-based Row Intervals / Hyrox WOD sessions.
 const DAYS = {
   mon: { label:"Mon", full:"Monday — Upper Body",
-    warmup:{n:"Warm-up", type:"zone2", hint:"10min easy run — NEW Wk9, replaces bike/row warm-up"},
+    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run planned — swap to Bike/Row if the foot's not feeling it"},
     workout: [
       {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"MOVED to front of session (Wk9) so it stops getting cut. Deferred twice already (Wk6, Wk8) — third attempt at 30kg. Watch shoulder closely."},
       {n:"Bench Press", wt:"55kg", reps:"4×6"},
@@ -113,7 +114,7 @@ const DAYS = {
       {n:"Core Machine", wt:"65kg", reps:"3×10"},
     ]},
   tue: { label:"Tue", full:"Tuesday — Row Intervals",
-    warmup:{n:"Warm-up", type:"zone2", hint:"NEW Wk9: 10min easy run + 10min row, before intervals"},
+    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row planned before intervals — swap the run for extra row if the foot's not feeling it"},
     wodbox: "10×250m Row / :30 rest\nTarget pace: ~1:50-1:52/500m\nSend Garmin screenshot after — splits/HR/total time logged from that.",
     workout: [{n:"Row Intervals session (screenshot to follow)", reps:"10×250m/:30r"}] },
   wed: { label:"Wed", full:"Wednesday — Lower Body (Back Squat)",
@@ -157,7 +158,7 @@ const DAYS = {
       {n:"Goblet Squat", wt:"25kg", reps:"3×10", f:"Missed both Wed and Sat last week — back on the list"},
     ]},
   sun: { label:"Sun", full:"Sunday — Long Zone 2 + Running Return",
-    warmup:{n:"Warm-up", type:"zone2", hint:"NEW Wk9: 10min easy run before the row — additive, not a swap (Zone 2 days don't normally need a warm-up)"},
+    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run planned before the row (additive, not a swap) — skip it and go straight to the row if the foot's not feeling it"},
     wodbox: "Long Zone 2 row\nTarget: 80 min (raised from 78min actual last week)\n110-139 BPM\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs this week stop.",
     workout: [{n:"Long Zone 2 row session", type:"zone2", hint:"80min target"}] },
 };
@@ -228,7 +229,7 @@ function zone2Row(item, key) {
   const z = getZone2(key);
   const filled = z.mode || z.total || z.z2;
   return `<div class="row z2-row${filled?' filled':''}">
-    <div class="ex-name">${item.n}</div>
+    <div class="ex-name">${item.n}${item.badge?` <span class="run-badge">${item.badge}</span>`:''}</div>
     ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
     <div class="z2-modes">
       <div class="z2-mode ${z.mode==='bike'?'active':''}" data-key="${key}" data-mode="bike">Bike</div>
