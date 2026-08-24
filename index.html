@@ -179,15 +179,15 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "wk8_checklist_v4_state";
-const COPIED_KEY = "wk8_checklist_v4_copied";
+const STORE_KEY = "checklist_v11_state";
+const COPIED_KEY = "checklist_v11_copied";
 
-async function loadState() {
-  try { const r = await window.storage.get(STORE_KEY, false); state = r && r.value ? JSON.parse(r.value) : {}; } catch(e) { state = {}; }
-  try { const r2 = await window.storage.get(COPIED_KEY, false); copied = r2 && r2.value ? JSON.parse(r2.value) : {}; } catch(e) { copied = {}; }
+function loadState() {
+  try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
+  try { const r2 = localStorage.getItem(COPIED_KEY); copied = r2 ? JSON.parse(r2) : {}; } catch(e) { copied = {}; }
 }
-async function saveState() { try { await window.storage.set(STORE_KEY, JSON.stringify(state), false); } catch(e){} }
-async function saveCopied() { try { await window.storage.set(COPIED_KEY, JSON.stringify(copied), false); } catch(e){} }
+function saveState() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+function saveCopied() { try { localStorage.setItem(COPIED_KEY, JSON.stringify(copied)); } catch(e){} }
 
 function k(day, section, idx) { return `${day}_${section}_${idx}`; }
 
@@ -350,7 +350,7 @@ async function onCopyClick() {
   setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("copied"); }, 2000);
 }
 
-(async () => { await loadState(); render(); })();
+loadState(); render();
 </script>
 </body>
 </html>
