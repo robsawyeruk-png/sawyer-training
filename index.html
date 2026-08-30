@@ -176,8 +176,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v14_state";
-const COPIED_KEY = "checklist_v14_copied";
+const STORE_KEY = "checklist_v15_state";
+const COPIED_KEY = "checklist_v15_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -262,7 +262,7 @@ function renderDay() {
   if (d.warmup) h += rowFor(d.warmup, k(activeDay,'warmup',0));
   if (d.wodbox) h += `<div class="wod-box">${d.wodbox}</div>`;
   d.workout.forEach((item,i) => h += rowFor(item, k(activeDay,'workout',i)));
-  h += zone2Row({n:"Zone 2 (AM)", hint:"post-weights / morning"}, k(activeDay,'z2am',0));
+  h += zone2Row({n:"Zone 2 (AM)", hint:"Target 30min — after weights on Mon/Wed/Sat, or evening catch-up if it doesn't fit (REINSTATED 30 Aug 2026)"}, k(activeDay,'z2am',0));
   h += `<div class="sec-title">PM Rehab</div>`;
   PM_ITEMS.forEach((item,i) => h += exRow(item, k(activeDay,'pm',i)));
   h += zone2Row({n:"Zone 2 (PM)", hint:"evening catch-up"}, k(activeDay,'z2pm',0));
