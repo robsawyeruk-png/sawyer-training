@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 9 — Daily Workouts</title>
+<title>Marathon Week 1 — Daily Workouts</title>
 <style>
   :root {
     --bg: #0d0d0d; --panel: #161616; --panel-2: #1e1e1e; --line: #2a2a2a;
@@ -88,9 +88,9 @@
   <header>
     <div class="eyebrow">Rob Sawyer · Marathon Prep</div>
     <h1>Daily Workouts</h1>
-    <div class="week-label">Week 9 — 24–30 Aug 2026</div>
+    <div class="week-label">Marathon Week 1 of 34 — 31 Aug–6 Sep 2026</div>
     <div class="subtitle" id="weekSubtitle">Monday — Upper Body</div>
-    <div class="countdowns">🏃 <b>Marathon</b> 25 Apr 2027 — 34wk 0d to go</div>
+    <div class="countdowns">🏃 <b>London Marathon</b> 25 Apr 2027 — 34wk to go</div>
   </header>
   <div class="tabs" id="tabs"></div>
 </div>
@@ -101,66 +101,63 @@
 // screenshot-based Row Intervals / Hyrox WOD sessions.
 const DAYS = {
   mon: { label:"Mon", full:"Monday — Upper Body",
-    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run planned — swap to Bike/Row if the foot's not feeling it"},
+    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run"},
     workout: [
-      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"MOVED to front of session (Wk9) so it stops getting cut. Deferred twice already (Wk6, Wk8) — third attempt at 30kg. Watch shoulder closely."},
-      {n:"Bench Press", wt:"55kg", reps:"4×6"},
-      {n:"Dead Hang", reps:"3×20s · BW"},
-      {n:"Captain's Chair", reps:"3×25 · BW", f:"Already confirmed at 25×3 on Wed/Sat — Monday's own attempts specifically keep getting cut (Wk6, Wk8), that's what's untested here, not the weight"},
+      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Carries in as the new baseline — first clean hit landed just before the marathon pivot. Shoulder flare history — watch closely."},
+      {n:"Bench Press", wt:"50kg", reps:"4×6", f:"HELD at 50kg, not pushed to 55kg — struggled even at 50kg last attempt. Deliberate regression, not an error."},
+      {n:"Captain's Chair", reps:"3×25 · BW", f:"Confirmed standing standard across all days."},
       {n:"Cable Row", wt:"62.5kg", reps:"3×10"},
       {n:"Lat Pulldown", wt:"56.5kg", reps:"3×10"},
       {n:"Pull-Ups", wt:"Green band", reps:"3×max"},
       {n:"Face Pulls", wt:"16.25kg", reps:"3×15"},
       {n:"Core Machine", wt:"65kg", reps:"3×10"},
+      {n:"Dead Hang", reps:"3×20s · BW"},
     ]},
-  tue: { label:"Tue", full:"Tuesday — Row Intervals",
-    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row planned before intervals — swap the run for extra row if the foot's not feeling it"},
-    wodbox: "10×250m Row / :30 rest\nTarget pace: ~1:50-1:52/500m\nSend Garmin screenshot after — splits/HR/total time logged from that.",
-    workout: [{n:"Row Intervals session (screenshot to follow)", reps:"10×250m/:30r"}] },
+  tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (NEW)",
+    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row before the block"},
+    wodbox: "NEW FORMAT — Norwegian 4×4: 4 reps of 4min hard / 3min easy.\nHard-rep HR target: 166-175bpm, from rep 1 (not a feel-it-out ramp).\nRecovery = light steady row, NOT near-stationary.\nDistance tracked via Concept2 on the 4 hard reps only — recovery periods aren't logged.\nReplaces 10×250m intervals — that format is retired.",
+    workout: [{n:"Norwegian 4×4 session (Concept2/Garmin data to follow)", reps:"4×(4min hard/3min easy)"}] },
   wed: { label:"Wed", full:"Wednesday — Lower Body (Back Squat)",
-    warmup:{n:"Warm-up", type:"zone2", hint:"~10min target — bike/row, no run (heavy lifting day)"},
+    warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
     glute: [
-      {n:"Clamshells (10kg held at knee)", reps:"3×15 each", f:"Method changed 26 Aug — now holding a 10kg weight against the knee by hand"},
+      {n:"Clamshells (10kg held at knee)", reps:"3×15 each"},
       {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band"},
       {n:"Side Plank", reps:"3×30s each side"},
-      {n:"Kettlebell Knee Drive", reps:"3×12 each · start light", f:"Never actually attempted under the new kettlebell method — first real go"},
     ],
     workout: [
-      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Machine only has 5/10/15kg settings — always really been 10kg, previous lower figures were a recording error. Moved to 15kg (top setting) 26 Aug"},
-      {n:"Captain's Chair", reps:"3×22 · BW", f:"Still untested — deferred from Wk6"},
-      {n:"Hamstring Curl", wt:"42.5kg", reps:"4×10", f:"Stepped up from 40kg — held since Wk5, overdue. Was already hard by the end at 40kg — watch closely"},
-      {n:"Back Squat", wt:"40kg", reps:"4×8", f:"Hold — one clean week isn't the two the rule calls for"},
-      {n:"Bulgarian Split Squat", reps:"3×10 each · BW", f:"Rep bump from 8 — felt manageable last week. Still bodyweight, DBs from Wk10"},
-      {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each"},
-      {n:"Goblet Squat", wt:"25kg", reps:"3×10", f:"Missed both Wed and Sat last week — back on the list"},
+      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Top of the machine's 3 settings (5/10/15kg)."},
+      {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"HOLD."},
+      {n:"Captain's Chair", reps:"3×25 · BW"},
+      {n:"Back Squat", wt:"40kg", reps:"4×8", f:"HOLD — technique/knee-foot response still the priority, not weight."},
+      {n:"Bulgarian Split Squat", reps:"3×10 each · BW", f:"BUMPED from 8 each (confirmed 30 Aug 2026). Still bodyweight — DBs from Marathon Week 10."},
     ]},
-  thu: { label:"Thu", full:"Thursday — Rest / Flexible Catch-up",
-    workout: [{n:"Optional Zone 2 or catch-up on anything missed earlier in the week", type:"zone2", hint:"only if you want it"}] },
-  fri: { label:"Fri", full:"Friday — WOD",
-    warmup:{n:"Warm-up", type:"zone2", hint:"Easy row, no fixed target"},
-    wodbox: "Full WOD, ×2 rounds:\nRow 1km → Wall Balls ×20 (6kg) → Run 5min (7.5km/h, pace held Wk9) → Wall Balls ×20 → Ski 1km → Wall Balls ×20\n30s rest between every station.\nSend Garmin screenshot after — splits/HR/total time logged from that.",
-    workout: [{n:"Full WOD session (screenshot to follow)", reps:"6 rounds, 6kg wall ball, 7.5km/h run — pace held this week"}] },
+  thu: { label:"Thu", full:"Thursday — Full Rest",
+    workout: [{n:"Full rest day — physio only, no gym", type:"zone2", hint:"nothing else planned"}] },
+  fri: { label:"Fri", full:"Friday — WOD (NEW: KB Swings + Bike)",
+    warmup:{n:"Warm-up", type:"zone2", hint:"Easy row only, no fixed target"},
+    wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1km → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike 4:30 → KB Swings\n30s rest between every station.\nKB Swings: 60s max-continuous at a self-chosen weight — log weight + reps, no fixed target yet.\nBike: fixed 4:30 — log distance, no fixed target yet.\nSend Garmin/Concept2 data after — splits/HR/total time logged from that.",
+    workout: [{n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"}] },
   sat: { label:"Sat", full:"Saturday — Lower Body (Leg Press)",
-    warmup:{n:"Warm-up", type:"zone2", hint:"~10min target — bike/row, no run (heavy lifting day)"},
+    warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
     glute: [
-      {n:"Clamshells (10kg held at knee)", reps:"3×15 each", f:"Method changed 26 Aug — now holding a 10kg weight against the knee by hand. Missed twice running last week under the old method — worth a check on why it keeps slipping"},
+      {n:"Clamshells (10kg held at knee)", reps:"3×15 each"},
       {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band"},
       {n:"Side Plank", reps:"3×30s each side"},
-      {n:"Kettlebell Knee Drive", reps:"3×12 each · start light", f:"Never actually attempted under the new kettlebell method — first real go"},
+      {n:"Kettlebell Knee Drive", reps:"3×12 each · start light", f:"Never successfully attempted under the current method — still owed."},
     ],
     workout: [
-      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Machine only has 5/10/15kg settings — always really been 10kg, previous lower figures were a recording error. Moved to 15kg (top setting) 26 Aug"},
-      {n:"Captain's Chair", reps:"3×25 · BW", f:"Stepped up from 22×3, confirmed clean last week"},
-      {n:"Leg Press", wt:"105kg", reps:"4×12", f:"Stepped up from 100kg — held since Wk5, overdue"},
-      {n:"Hamstring Curl", wt:"42.5kg", reps:"4×10", f:"Matches Wednesday's step"},
-      {n:"Hip Thrust", wt:"45kg", reps:"4×12", f:"The owed attempt, finally — deferred since Wk6. Drop back to 40kg if it's a genuine grind, not just hard-but-clean"},
-      {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each", f:"Missed last Saturday — back on the list"},
-      {n:"Goblet Squat", wt:"25kg", reps:"3×10", f:"Missed both Wed and Sat last week — back on the list"},
+      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each"},
+      {n:"Captain's Chair", reps:"3×25 · BW"},
+      {n:"Leg Press", wt:"100kg", reps:"4×12", f:"HOLD — 105kg attempt still owed."},
+      {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"HOLD."},
+      {n:"Hip Thrust", wt:"40kg", reps:"4×12", f:"HOLD — 45kg attempt deferred twice already, 3rd attempt still owed."},
+      {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each"},
+      {n:"Goblet Squat", wt:"25kg", reps:"3×10"},
     ]},
-  sun: { label:"Sun", full:"Sunday — Long Zone 2 + Running Return",
-    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run planned before the row (additive, not a swap) — skip it and go straight to the row if the foot's not feeling it"},
-    wodbox: "Long Zone 2 row\nTarget: 80 min (raised from 78min actual last week)\n110-139 BPM\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs this week stop.",
-    workout: [{n:"Long Zone 2 row session", type:"zone2", hint:"80min target"}] },
+  sun: { label:"Sun", full:"Sunday — Run + Row (NEW structure)",
+    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"20min run on fresh legs, before the row — NEW: run now comes first, not split off or after"},
+    wodbox: "NEW STRUCTURE (agreed 30 Aug 2026) — 20min run (fresh legs) then 60min row.\nTotal 80min — same as before, row trimmed from 80 to 60min so the run is added by trade, not stacked.\nRun climbs first over coming weeks (no fixed increment — reviewed as it's earned). Row holds at 60min until the run is settled.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
+    workout: [{n:"20min run then 60min row", type:"zone2", hint:"20min run + 60min row, ~80min total"}] },
 };
 const PHYSIO = [
   {n:"Feet Elevated Bridge", reps:"3×60s"},
@@ -179,8 +176,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v11_state";
-const COPIED_KEY = "checklist_v11_copied";
+const STORE_KEY = "checklist_v14_state";
+const COPIED_KEY = "checklist_v14_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
