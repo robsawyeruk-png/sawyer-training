@@ -118,7 +118,10 @@ const DAYS = {
   tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (NEW)",
     warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row before the block"},
     wodbox: "NEW FORMAT — Norwegian 4×4: 4 reps of 4min hard / 3min easy.\nHard-rep HR target: 166-175bpm, from rep 1 (not a feel-it-out ramp).\nRecovery = light steady row, NOT near-stationary.\nDistance tracked via Concept2 on the 4 hard reps only — recovery periods aren't logged.\nReplaces 10×250m intervals — that format is retired.",
-    workout: [{n:"Norwegian 4×4 session (Concept2/Garmin data to follow)", reps:"4×(4min hard/3min easy)"}] },
+    workout: [
+      {n:"Norwegian 4×4 session (Concept2/Garmin data to follow)", reps:"4×(4min hard/3min easy)"},
+      {n:"Warm-down (cool-down, ~10min bike)", reps:"needed — wired after hard intervals"},
+    ] },
   wed: { label:"Wed", full:"Wednesday — Lower Body (Quad/Squat)",
     warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
     glute: [
@@ -139,7 +142,10 @@ const DAYS = {
   fri: { label:"Fri", full:"Friday — WOD (NEW: KB Swings + Bike)",
     warmup:{n:"Warm-up", type:"zone2", hint:"Easy row only, no fixed target"},
     wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1km → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike 4:30 → KB Swings\n30s rest between every station.\nKB Swings: 60s max-continuous at a self-chosen weight — log weight + reps, no fixed target yet.\nBike: fixed 4:30 — log distance, no fixed target yet.\nSend Garmin/Concept2 data after — splits/HR/total time logged from that.",
-    workout: [{n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"}] },
+    workout: [
+      {n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"},
+      {n:"Warm-down (cool-down, ~10min bike)", reps:"needed — wired after WOD"},
+    ] },
   sat: { label:"Sat", full:"Saturday — Lower Body (Posterior Chain/Hip Hinge)",
     warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
     glute: [
@@ -180,8 +186,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v17_state";
-const COPIED_KEY = "checklist_v17_copied";
+const STORE_KEY = "checklist_v18_state";
+const COPIED_KEY = "checklist_v18_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -266,10 +272,15 @@ function renderDay() {
   if (d.warmup) h += rowFor(d.warmup, k(activeDay,'warmup',0));
   if (d.wodbox) h += `<div class="wod-box">${d.wodbox}</div>`;
   d.workout.forEach((item,i) => h += rowFor(item, k(activeDay,'workout',i)));
-  h += zone2Row({n:"Zone 2 (AM)", hint:"Target 30min — after weights on Mon/Wed/Sat, or evening catch-up if it doesn't fit (REINSTATED 30 Aug 2026)"}, k(activeDay,'z2am',0));
+  const zone2Days = ["mon","wed","sat"]; // Zone 2 dropped from Tue/Fri 3 Sep 2026 — both already carry enough cardio (warm-up + hard session + warm-down); Thu is rest, Sun's row already is the day's Zone 2 volume
+  if (zone2Days.includes(activeDay)) {
+    h += zone2Row({n:"Zone 2 (AM)", hint:"Target 30min — after weights, or evening catch-up if it doesn't fit (REINSTATED 30 Aug 2026)"}, k(activeDay,'z2am',0));
+  }
   h += `<div class="sec-title">PM Rehab</div>`;
   PM_ITEMS.forEach((item,i) => h += exRow(item, k(activeDay,'pm',i)));
-  h += zone2Row({n:"Zone 2 (PM)", hint:"evening catch-up"}, k(activeDay,'z2pm',0));
+  if (zone2Days.includes(activeDay)) {
+    h += zone2Row({n:"Zone 2 (PM)", hint:"evening catch-up"}, k(activeDay,'z2pm',0));
+  }
   h += `<div class="sec-title">Foot Pain</div>`;
   const pain = getPain(activeDay);
   h += `<div class="pain-row">` + [...Array(10).keys()].map(n=>n+1).map(n =>
