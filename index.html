@@ -100,18 +100,20 @@
 // item.type omitted (default tick) => normal ✓/✗ row, used for weighted/rep work and the
 // screenshot-based Row Intervals / Hyrox WOD sessions.
 const DAYS = {
-  mon: { label:"Mon", full:"Monday — Upper Body",
+  mon: { label:"Mon", full:"Monday — Upper Body (rebuilt: posture + push/pull spacing)",
     warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run"},
     workout: [
-      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Carries in as the new baseline — first clean hit landed just before the marathon pivot. Shoulder flare history — watch closely."},
-      {n:"Bench Press", wt:"50kg", reps:"4×6", f:"HELD at 50kg, not pushed to 55kg — struggled even at 50kg last attempt. Deliberate regression, not an error."},
-      {n:"Captain's Chair", reps:"3×25 · BW", f:"Confirmed standing standard across all days."},
-      {n:"Cable Row", wt:"62.5kg", reps:"3×10"},
-      {n:"Lat Pulldown", wt:"56.5kg", reps:"3×10"},
-      {n:"Pull-Ups", wt:"Green band", reps:"3×max"},
-      {n:"Face Pulls", wt:"16.25kg", reps:"3×15"},
-      {n:"Core Machine", wt:"65kg", reps:"3×10"},
-      {n:"Dead Hang", reps:"3×20s · BW"},
+      {n:"Chin Tucks", wt:"BW", reps:"3×10 (5s hold)", f:"Rest 20s. NEW 3 Sep 2026 — deep neck flexor strength for forward head posture."},
+      {n:"Cable Row", wt:"62.5kg", reps:"3×10", f:"Rest 100s. HOLD."},
+      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Rest 100s. Goes before Bench deliberately — harder, more shoulder-sensitive lift done while freshest. Watch shoulder closely."},
+      {n:"Lat Pulldown", wt:"56.5kg", reps:"3×10", f:"Rest 100s. HOLD."},
+      {n:"Bench Press", wt:"50kg", reps:"4×6", f:"Rest 100s. HELD, not pushed. Struggle traced to pre-fatigue from OHP directly before it, not a strength/shoulder issue — fixed by the reorder, not by changing the lift itself."},
+      {n:"Pull-Ups", wt:"Green band", reps:"3×max", f:"Rest 90s. HOLD."},
+      {n:"Incline DB Press", wt:"TBD — first attempt", reps:"3×10", f:"Rest 90s. NEW 3 Sep 2026, alongside Bench not instead of it — upper chest angle, less anterior shoulder stress, matches the definition goal."},
+      {n:"Face Pulls", wt:"16.25kg", reps:"3×15", f:"Rest 60s. HOLD."},
+      {n:"Cable External Rotation", wt:"TBD — first attempt", reps:"3×12 each", f:"Rest 45s. NEW 3 Sep 2026 — same cable column as Face Pulls, no band. Targets external rotator cuff specifically, protective given the OHP shoulder history."},
+      {n:"Core Machine", wt:"65kg", reps:"3×10", f:"Rest 60s. HOLD."},
+      {n:"Dead Hang", wt:"BW", reps:"3×20s", f:"Rest 60s. HOLD."},
     ]},
   tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (NEW)",
     warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row before the block"},
@@ -178,8 +180,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v16_state";
-const COPIED_KEY = "checklist_v16_copied";
+const STORE_KEY = "checklist_v17_state";
+const COPIED_KEY = "checklist_v17_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
