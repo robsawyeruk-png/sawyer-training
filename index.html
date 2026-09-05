@@ -131,9 +131,9 @@ const DAYS = {
     ],
     workout: [
       {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Top of the machine's 3 settings (5/10/15kg)."},
-      {n:"Lying Cable Knee Drive", wt:"light, start", reps:"3×12 each", f:"Rest 60s. Bent-knee hip flexion, lying on back — swapped from Kettlebell Knee Drive 1 Sep 2026."},
+      {n:"Lying Cable Knee Drive", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Confirmed 5 Sep 2026 — first real attempt landed comfortably, new standard."},
       {n:"Goblet Squat", wt:"25kg", reps:"4×10", f:"Rest 100s. NEW to Wednesday 3 Sep 2026 — replaces Back Squat as the squat pattern here."},
-      {n:"Bulgarian Split Squat", wt:"BW", reps:"3×10 each", f:"Rest 60s. Now on both Wed and Sat."},
+      {n:"Bulgarian Split Squat", wt:"4kg DBs", reps:"3×10 each", f:"Rest 60s. Confirmed 5 Sep 2026 — genuine load progression from bodyweight, new standard."},
       {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"Rest 60s. HOLD."},
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
@@ -141,7 +141,7 @@ const DAYS = {
     workout: [{n:"Full rest day — physio only, no gym", type:"zone2", hint:"nothing else planned"}] },
   fri: { label:"Fri", full:"Friday — WOD (NEW: KB Swings + Bike)",
     warmup:{n:"Warm-up", type:"zone2", hint:"Easy row only, no fixed target"},
-    wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1km → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike 4:30 → KB Swings\n30s rest between every station.\nKB Swings: 60s max-continuous at a self-chosen weight — log weight + reps, no fixed target yet.\nBike: fixed 4:30 — log distance, no fixed target yet.\nSend Garmin/Concept2 data after — splits/HR/total time logged from that.",
+    wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1000m → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike (50 cal) → KB Swings\n30s rest between every station.\nCONFIRMED TARGETS (4 Sep 2026): Row 1000m fixed, Run 5min @ 7.5km/h, Bike 50 calories, KB Swings 16kg × 25 reps.\nAll splits from Garmin lap-button press only — Concept2 is NOT used on WOD days. Ignore Garmin's auto-detected rep counts entirely.",
     workout: [
       {n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"},
       {n:"Warm-down (cool-down, ~10min bike)", reps:"needed — wired after WOD"},
@@ -155,12 +155,12 @@ const DAYS = {
     ],
     workout: [
       {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s."},
-      {n:"Lying Cable Knee Drive", wt:"light, start", reps:"3×12 each", f:"Rest 60s. Bent-knee hip flexion, lying on back — swapped from Kettlebell Knee Drive 1 Sep 2026."},
+      {n:"Lying Cable Knee Drive", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Confirmed 5 Sep 2026 — first real attempt landed comfortably, new standard."},
       {n:"Leg Press", wt:"100kg", reps:"4×12", f:"Rest 100s. HOLD — 105kg PB chase dropped 3 Sep 2026, not owed any more."},
       {n:"Hip Thrust", wt:"40kg", reps:"4×12", f:"Rest 100s. HOLD — 45kg PB chase dropped 3 Sep 2026, not owed any more."},
       {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"Rest 60s. HOLD."},
       {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each", f:"Rest 60s. HOLD."},
-      {n:"Bulgarian Split Squat", wt:"BW", reps:"3×10 each", f:"Rest 60s. Now on both Wed and Sat."},
+      {n:"Bulgarian Split Squat", wt:"4kg DBs", reps:"3×10 each", f:"Rest 60s. Confirmed 5 Sep 2026 — genuine load progression from bodyweight, new standard."},
       {n:"Single-Leg Calf Raise", wt:"BW to start", reps:"3×15 each", f:"Rest 60s. NEW 3 Sep 2026 — brought forward given live calf/ankle weakness concerns."},
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
@@ -186,8 +186,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v18_state";
-const COPIED_KEY = "checklist_v18_copied";
+const STORE_KEY = "checklist_v19_state";
+const COPIED_KEY = "checklist_v19_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
