@@ -160,7 +160,7 @@ const DAYS = {
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
   sun: { label:"Sun", full:"Sunday — Run + Row (NEW structure)",
-    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"24min run on fresh legs, before the row — bumped from 20min at Week 2 (two clean weeks earned it)"},
+    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"Run on fresh legs, before the row — 24min this week, self-directed from here based on how it feels (5-10min jumps, track pain)"},
     wodbox: "STRUCTURE (agreed 30 Aug 2026, run target bumped 7 Sep 2026) — 24min run (fresh legs, Zone 2) then 60min row.\nRow holds at 60min until the run is settled, then climbs toward 75-90min.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
     workout: [{n:"24min run then 60min row", type:"zone2", hint:"24min run + 60min row"}] },
 };
@@ -181,8 +181,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v21_state";
-const COPIED_KEY = "checklist_v21_copied";
+const STORE_KEY = "checklist_v22_state";
+const COPIED_KEY = "checklist_v22_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
