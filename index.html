@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marathon Week 1 — Daily Workouts</title>
+<title>Marathon Week 2 — Daily Workouts</title>
 <style>
   :root {
     --bg: #0d0d0d; --panel: #161616; --panel-2: #1e1e1e; --line: #2a2a2a;
@@ -83,7 +83,7 @@
   <header>
     <div class="eyebrow">Rob Sawyer · Marathon Prep</div>
     <h1>Daily Workouts</h1>
-    <div class="week-label">Marathon Week 1 of 34 — 31 Aug–6 Sep 2026</div>
+    <div class="week-label">Marathon Week 2 of 34 — 7–13 Sep 2026</div>
     <div class="subtitle" id="weekSubtitle">Monday — Upper Body</div>
     <div class="countdowns">🏃 <b>London Marathon</b> 25 Apr 2027 — 34wk to go</div>
   </header>
@@ -160,9 +160,9 @@ const DAYS = {
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
   sun: { label:"Sun", full:"Sunday — Run + Row (NEW structure)",
-    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"20min run on fresh legs, before the row — NEW: run now comes first, not split off or after"},
-    wodbox: "NEW STRUCTURE (agreed 30 Aug 2026) — 20min run (fresh legs) then 60min row.\nTotal 80min — same as before, row trimmed from 80 to 60min so the run is added by trade, not stacked.\nRun climbs first over coming weeks (no fixed increment — reviewed as it's earned). Row holds at 60min until the run is settled.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
-    workout: [{n:"20min run then 60min row", type:"zone2", hint:"20min run + 60min row, ~80min total"}] },
+    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"24min run on fresh legs, before the row — bumped from 20min at Week 2 (two clean weeks earned it)"},
+    wodbox: "STRUCTURE (agreed 30 Aug 2026, run target bumped 7 Sep 2026) — 24min run (fresh legs, Zone 2) then 60min row.\nRow holds at 60min until the run is settled, then climbs toward 75-90min.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
+    workout: [{n:"24min run then 60min row", type:"zone2", hint:"24min run + 60min row"}] },
 };
 const PHYSIO = [
   {n:"Feet Elevated Bridge", reps:"3×60s"},
@@ -181,8 +181,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v20_state";
-const COPIED_KEY = "checklist_v20_copied";
+const STORE_KEY = "checklist_v21_state";
+const COPIED_KEY = "checklist_v21_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
