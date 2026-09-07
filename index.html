@@ -52,18 +52,13 @@
   .btn.yes.active { background:var(--done); border-color:var(--done); color:#06210f; }
   .btn.no.active { background:var(--miss); border-color:var(--miss); color:#2a0505; }
 
-  /* Zone 2 rows — modality selector + two time fields, replaces tick/cross for Zone 2 slots */
+  /* Zone 2 rows — SIMPLIFIED 7 Sep 2026: modality tick only, no manual time entry. Claude pulls real
+     duration and zone-time from Garmin and writes it into the Card directly. */
   .z2-row.filled { background:var(--done-bg); border-color:rgba(34,197,94,0.35); }
   .z2-modes { display:flex; gap:6px; margin-top:6px; }
   .z2-mode { flex:1; text-align:center; padding:7px 0; border-radius:7px; border:1px solid var(--line);
     background:var(--panel-2); color:var(--muted); font-size:12px; font-weight:800; cursor:pointer; }
   .z2-mode.active { background:var(--text); border-color:var(--text); color:#0d0d0d; }
-  .z2-inputs { display:flex; gap:8px; margin-top:6px; }
-  .z2-field { flex:1; }
-  .z2-field label { display:block; font-size:9.5px; color:var(--muted); text-transform:uppercase;
-    letter-spacing:0.04em; margin-bottom:3px; font-weight:700; }
-  .z2-input { width:100%; background:var(--panel-2); border:1px solid var(--line); border-radius:7px;
-    color:var(--text); font-size:15px; font-weight:700; padding:7px 8px; font-family:inherit; }
 
   .wod-box { background:var(--panel-2); border:1px solid var(--line); border-radius:9px;
     padding:9px 10px; font-size:12px; font-weight:600; color:var(--text); opacity:0.9; line-height:1.4; margin-bottom:6px; white-space:pre-line; }
@@ -186,8 +181,8 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v19_state";
-const COPIED_KEY = "checklist_v19_copied";
+const STORE_KEY = "checklist_v20_state";
+const COPIED_KEY = "checklist_v20_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -203,13 +198,12 @@ function get(key) { return state[key] || { status:null }; }
 function setStatus(key, status) {
   const cur = get(key); cur.status = (cur.status===status) ? null : status; state[key]=cur; saveState();
 }
-// Zone 2 items
-function getZone2(key) { return state[key] || { mode:null, total:"", z2:"" }; }
+// Zone 2 items — SIMPLIFIED 7 Sep 2026: no more manual time/zone entry. Picking a mode (bike/run/row) IS
+// the tick — Claude pulls the real duration and zone-time from Garmin afterward and writes it into the
+// Card. The checklist's only job is telling Claude what to look for, not recording numbers by hand.
+function getZone2(key) { return state[key] || { mode:null }; }
 function setZone2Mode(key, mode) {
   const cur = getZone2(key); cur.mode = (cur.mode===mode) ? null : mode; state[key]=cur; saveState();
-}
-function setZone2Field(key, field, val) {
-  const cur = getZone2(key); cur[field] = val; state[key]=cur; saveState();
 }
 
 function getNote(day) { return state[`${day}_notes`] || ""; }
@@ -234,18 +228,13 @@ function exRow(item, key) {
 
 function zone2Row(item, key) {
   const z = getZone2(key);
-  const filled = z.mode || z.total || z.z2;
-  return `<div class="row z2-row${filled?' filled':''}">
+  return `<div class="row z2-row${z.mode?' filled':''}">
     <div class="ex-name">${item.n}${item.badge?` <span class="run-badge">${item.badge}</span>`:''}</div>
     ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
     <div class="z2-modes">
       <div class="z2-mode ${z.mode==='bike'?'active':''}" data-key="${key}" data-mode="bike">Bike</div>
       <div class="z2-mode ${z.mode==='run'?'active':''}" data-key="${key}" data-mode="run">Run</div>
       <div class="z2-mode ${z.mode==='row'?'active':''}" data-key="${key}" data-mode="row">Row</div>
-    </div>
-    <div class="z2-inputs">
-      <div class="z2-field"><label>Total time (min)</label><input type="number" inputmode="numeric" class="z2-input" data-key="${key}" data-field="total" value="${z.total}"></div>
-      <div class="z2-field"><label>Zone 2 time (min)</label><input type="number" inputmode="numeric" class="z2-input" data-key="${key}" data-field="z2" value="${z.z2}"></div>
     </div>
   </div>`;
 }
@@ -292,10 +281,6 @@ function renderDay() {
 
   document.querySelectorAll('.btn').forEach(b => b.onclick = () => { setStatus(b.dataset.key, b.dataset.status); render(); });
   document.querySelectorAll('.z2-mode').forEach(b => b.onclick = () => { setZone2Mode(b.dataset.key, b.dataset.mode); render(); });
-  document.querySelectorAll('.z2-input').forEach(inp => {
-    inp.oninput = (e) => setZone2Field(inp.dataset.key, inp.dataset.field, e.target.value);
-    inp.onblur = () => render();
-  });
   document.querySelectorAll('.pain-btn').forEach(b => b.onclick = () => { setPain(activeDay, parseInt(b.dataset.pain)); render(); });
   document.getElementById('notesBox').oninput = (e) => setNote(activeDay, e.target.value);
   document.getElementById('copyBtn').addEventListener('click', onCopyClick);
@@ -324,9 +309,9 @@ function buildDelta(day) {
     if (already.keys.includes(key)) return;
     if (type === 'zone2') {
       const z = getZone2(key);
-      if (!z.mode && !z.total && !z.z2) return;
-      const modeLabel = z.mode ? (z.mode.charAt(0).toUpperCase()+z.mode.slice(1)) : '?';
-      lines.push(`${label}: ${modeLabel} · Total ${z.total||'?'}min · Zone 2 ${z.z2||'?'}min`);
+      if (!z.mode) return;
+      const modeLabel = z.mode.charAt(0).toUpperCase()+z.mode.slice(1);
+      lines.push(`${label}: ${modeLabel}`);
       newKeys.push(key);
     } else {
       const st = get(key);
