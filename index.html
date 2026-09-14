@@ -39,20 +39,27 @@
     padding:7px 9px; margin-bottom:5px; }
   .row.state-done { background:var(--done-bg); border-color:rgba(34,197,94,0.35); }
   .row.state-miss { background:var(--miss-bg); border-color:rgba(239,68,68,0.3); }
-  .row-top { display:flex; align-items:center; gap:10px; }
+  .row-top { display:flex; align-items:center; gap:8px; }
   .ex-info { flex:1; min-width:0; }
   .ex-name { font-size:16px; font-weight:800; line-height:1.25; }
   .run-badge { display:inline-block; background:var(--accent); color:#0d0d0d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:10px; vertical-align:middle; margin-left:4px; }
   .ex-target { font-size:11px; font-weight:600; color:var(--muted); margin-top:2px; }
   .ex-flag { font-size:10.5px; color:var(--text); opacity:0.8; margin-top:3px; line-height:1.3; font-weight:700; }
-  .btns { display:flex; gap:5px; flex:0 0 auto; }
+  .btns { display:flex; gap:5px; flex:0 0 auto; align-items:center; }
   .btn { width:30px; height:28px; border-radius:7px; border:1px solid var(--line);
     background:var(--panel-2); color:var(--muted); font-size:13px; font-weight:800;
     display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; }
   .btn.yes.active { background:var(--done); border-color:var(--done); color:#06210f; }
   .btn.no.active { background:var(--miss); border-color:var(--miss); color:#2a0505; }
+  .btn.note-toggle { font-size:14px; font-weight:800; color:var(--muted); }
+  .btn.note-toggle.has-note { background:var(--accent); border-color:var(--accent); color:#2a1400; }
 
-  /* Zone 2 rows — SIMPLIFIED 7 Sep 2026: modality tick only, no manual time entry. Claude pulls real
+  .note-input-wrap { margin-top:7px; }
+  input.note-input { width:100%; background:var(--panel-2); border:1px solid var(--line);
+    border-radius:8px; color:var(--text); font-size:14px; padding:8px 10px; font-family:inherit; }
+  input.note-input::placeholder { color:var(--muted); }
+
+  /* Zone 2 AM/PM rows — modality tick only, no manual time entry. Claude pulls real
      duration and zone-time from Garmin and writes it into the Card directly. */
   .z2-row.filled { background:var(--done-bg); border-color:rgba(34,197,94,0.35); }
   .z2-modes { display:flex; gap:6px; margin-top:6px; }
@@ -68,9 +75,6 @@
     background:var(--panel-2); color:var(--muted); font-size:12px; font-weight:800;
     display:flex; align-items:center; justify-content:center; cursor:pointer; }
   .pain-btn.active { background:var(--text); border-color:var(--text); color:#0d0d0d; }
-
-  textarea.notes { width:100%; min-height:70px; background:var(--panel-2); border:1px solid var(--line);
-    border-radius:10px; color:var(--text); font-size:15px; padding:10px; margin-top:6px; font-family:inherit; resize:vertical; }
 
   .copy-btn { width:100%; padding:12px; border-radius:10px; background:var(--text);
     color:#0d0d0d; border:none; font-size:15px; font-weight:800; cursor:pointer; margin-top:16px; }
@@ -91,18 +95,26 @@
 </div>
 <main id="main"></main>
 <script>
-// item.type "zone2" => modality (bike/run/row) + total time + zone2 time, no screenshot needed.
-// item.type omitted (default tick) => normal ✓/✗ row, used for weighted/rep work and the
-// screenshot-based Row Intervals / Hyrox WOD sessions.
+// item.type "zone2" => modality (bike/run/row) picker, used ONLY for Zone 2 AM/PM boxes where the
+// modality genuinely varies session to session. Everything else (warm-up, cool-down, workout,
+// rehab) is a fixed-modality tick row — the modality is named in the title itself (e.g. "Run",
+// "Row"), so when the plan changes, amend the title/hint text here rather than the component.
+//
+// RESTRUCTURED 14 Sep 2026: warm-up and cool-down are now arrays, one box per modality, instead of
+// a single combined box — e.g. Tuesday's warm-up is [Run, Row] as two separate ticks, not one box
+// covering both. This makes future changes (a warm-up piece added/dropped/renamed) a one-line edit
+// to the relevant day's array, not a restructure of the render logic.
 const DAYS = {
   mon: { label:"Mon", full:"Monday — Upper Body (rebuilt: posture + push/pull spacing)",
-    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN", hint:"10min easy run"},
+    warmup: [
+      {n:"Run", reps:"10min easy"},
+    ],
     workout: [
       {n:"Chin Tucks", wt:"BW", reps:"3×10 (5s hold)", f:"Rest 20s. NEW 3 Sep 2026 — deep neck flexor strength for forward head posture."},
-      {n:"Cable Row", wt:"62.5kg", reps:"3×10", f:"Rest 100s. HOLD."},
+      {n:"Cable Row", wt:"65kg", reps:"3×10", f:"Rest 100s. HOLD — bumped from 62.5kg 14 Sep 2026."},
       {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Rest 100s. Goes before Bench deliberately — harder, more shoulder-sensitive lift done while freshest. Watch shoulder closely."},
       {n:"Lat Pulldown", wt:"56.5kg", reps:"3×10", f:"Rest 100s. HOLD."},
-      {n:"Bench Press", wt:"50kg", reps:"4×6", f:"Rest 100s. HELD, not pushed. Struggle traced to pre-fatigue from OHP directly before it, not a strength/shoulder issue — fixed by the reorder, not by changing the lift itself."},
+      {n:"Bench Press", wt:"55kg", reps:"4×6", f:"Rest 100s. Bumped from 50kg 14 Sep 2026 — resuming a previous working weight, not a fresh PB push."},
       {n:"Pull-Ups", wt:"Green band", reps:"3×max", f:"Rest 90s. HOLD."},
       {n:"Incline DB Press", wt:"TBD — first attempt", reps:"3×10", f:"Rest 90s. NEW 3 Sep 2026, alongside Bench not instead of it — upper chest angle, less anterior shoulder stress, matches the definition goal."},
       {n:"Face Pulls", wt:"16.25kg", reps:"3×15", f:"Rest 60s. HOLD."},
@@ -111,14 +123,21 @@ const DAYS = {
       {n:"Dead Hang", wt:"BW", reps:"3×20s", f:"Rest 60s. HOLD."},
     ]},
   tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (reinstated Wk3 — swap to easy Zone 2 row if HRV still down)",
-    warmup:{n:"Warm-up", type:"zone2", badge:"🏃 RUN + ROW", hint:"10min easy run + 10min row before the block"},
+    warmup: [
+      {n:"Run", reps:"10min easy"},
+      {n:"Row", reps:"10min easy"},
+    ],
     wodbox: "NEW FORMAT — Norwegian 4×4: 4 reps of 4min hard / 3min easy.\nHard-rep HR target: 166-175bpm, from rep 1 (not a feel-it-out ramp).\nRecovery = light steady row, NOT near-stationary.\nDistance tracked via Concept2 on the 4 hard reps only — recovery periods aren't logged.\nReplaces 10×250m intervals — that format is retired.",
     workout: [
       {n:"Norwegian 4×4 session (Concept2/Garmin data to follow)", reps:"4×(4min hard/3min easy)"},
-      {n:"Warm-down (cool-down, ~10min bike)", reps:"needed — wired after hard intervals"},
+    ],
+    cooldown: [
+      {n:"Bike", reps:"10min — needed, wired after hard intervals"},
     ] },
   wed: { label:"Wed", full:"Wednesday — Lower Body (Quad/Squat)",
-    warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
+    warmup: [
+      {n:"Bike or Row", reps:"~10min — no run, heavy lifting day"},
+    ],
     glute: [
       {n:"Clamshells (10kg held at knee)", reps:"3×15 each", f:"Rest 40s"},
       {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band", f:"Rest 40s"},
@@ -133,16 +152,22 @@ const DAYS = {
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
   thu: { label:"Thu", full:"Thursday — Full Rest",
-    workout: [{n:"Full rest day — physio only, no gym", type:"zone2", hint:"nothing else planned"}] },
+    workout: [{n:"Full rest day — physio only, no gym", reps:"nothing else planned"}] },
   fri: { label:"Fri", full:"Friday — WOD (NEW: KB Swings + Bike)",
-    warmup:{n:"Warm-up", type:"zone2", hint:"Easy row only, no fixed target"},
+    warmup: [
+      {n:"Row", reps:"10min easy, no fixed target"},
+    ],
     wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1000m → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike (60 cal) → KB Swings\n30s rest between every station.\nCONFIRMED TARGETS (4 Sep 2026, Bike corrected 11 Sep 2026): Row 1000m fixed, Run 5min @ 7.5km/h, Bike 60 calories, KB Swings 16kg × 25 reps.\nAll splits from Garmin lap-button press only — Concept2 is NOT used on WOD days. NEVER trust Garmin's auto-detected KB Swing rep counts — Rob always does 25, regardless of what the file shows.",
     workout: [
       {n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"},
-      {n:"Warm-down (cool-down, ~10min bike)", reps:"needed — wired after WOD"},
+    ],
+    cooldown: [
+      {n:"Bike", reps:"10min — needed, wired after WOD"},
     ] },
   sat: { label:"Sat", full:"Saturday — Lower Body (Posterior Chain/Hip Hinge)",
-    warmup:{n:"Warm-up", type:"zone2", hint:"~10min — bike/row only, no run (heavy lifting day)"},
+    warmup: [
+      {n:"Bike or Row", reps:"~10min — no run, heavy lifting day"},
+    ],
     glute: [
       {n:"Clamshells (10kg held at knee)", reps:"3×15 each", f:"Rest 40s"},
       {n:"Banded Lateral Walk", reps:"3×15 steps · monster walk, no band", f:"Rest 40s"},
@@ -160,9 +185,13 @@ const DAYS = {
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
   sun: { label:"Sun", full:"Sunday — Run + Row (NEW structure)",
-    warmup:{n:"Run", type:"zone2", badge:"🏃 RUN FIRST", hint:"Run on fresh legs, before the row — 40min this week, self-directed from here based on how it feels (5-10min jumps, track pain)"},
+    warmup: [
+      {n:"Run", reps:"40min, fresh legs, Zone 2 — self-directed, 5-10min jumps based on feel, before the row"},
+    ],
     wodbox: "STRUCTURE (agreed 30 Aug 2026, run target bumped to 40min 13 Sep 2026) — 40min run (fresh legs, Zone 2) then 60min row.\nRow back to its 60min hold this week — Week 2's 40min row was a one-off trade against a longer run that day, not a target change.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
-    workout: [{n:"40min run then 60min row", type:"zone2", hint:"40min run + 60min row"}] },
+    workout: [
+      {n:"Row (after run)", reps:"60min, Concept2, Zone 2"},
+    ] },
 };
 const PHYSIO = [
   {n:"Feet Elevated Bridge", reps:"3×60s"},
@@ -181,8 +210,15 @@ const DAY_ORDER = ["mon","tue","wed","thu","fri","sat","sun"];
 let state = {};
 let copied = {};
 let activeDay = "mon";
-const STORE_KEY = "checklist_v22_state";
-const COPIED_KEY = "checklist_v22_copied";
+let openNotes = {}; // which note inputs are currently expanded, session-only, not persisted
+
+// STORAGE KEY INCLUDES THE WEEK NUMBER — this is the actual fix for the "doesn't clear between
+// weeks" bug. Each new week's file uses a new key, so last week's ticks/notes simply aren't found
+// under it — the page starts blank automatically, with no clearing logic needed. STANDING RULE:
+// bump the week number here every time this file is rebuilt for a new week, or this fix silently
+// stops working.
+const STORE_KEY = "checklist_wk3_v24_state";
+const COPIED_KEY = "checklist_wk3_v24_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -194,23 +230,33 @@ function saveCopied() { try { localStorage.setItem(COPIED_KEY, JSON.stringify(co
 function k(day, section, idx) { return `${day}_${section}_${idx}`; }
 
 // Tick/cross items
-function get(key) { return state[key] || { status:null }; }
+function get(key) { return state[key] || { status:null, note:"" }; }
 function setStatus(key, status) {
   const cur = get(key); cur.status = (cur.status===status) ? null : status; state[key]=cur; saveState();
 }
-// Zone 2 items — SIMPLIFIED 7 Sep 2026: no more manual time/zone entry. Picking a mode (bike/run/row) IS
-// the tick — Claude pulls the real duration and zone-time from Garmin afterward and writes it into the
-// Card. The checklist's only job is telling Claude what to look for, not recording numbers by hand.
-function getZone2(key) { return state[key] || { mode:null }; }
+function setItemNote(key, val) {
+  const cur = get(key); cur.note = val; state[key] = cur; saveState();
+}
+// Zone 2 AM/PM items — modality (bike/run/row) picker IS the tick — Claude pulls the real duration
+// and zone-time from Garmin afterward and writes it into the Card. The checklist's only job is
+// telling Claude what to look for, not recording numbers by hand.
+function getZone2(key) { return state[key] || { mode:null, note:"" }; }
 function setZone2Mode(key, mode) {
   const cur = getZone2(key); cur.mode = (cur.mode===mode) ? null : mode; state[key]=cur; saveState();
 }
 
-function getNote(day) { return state[`${day}_notes`] || ""; }
-function setNote(day, val) { state[`${day}_notes`] = val; saveState(); }
 function getPain(day) { return state[`${day}_pain`] || null; }
 function setPain(day, val) {
   const cur = getPain(day); state[`${day}_pain`] = (cur===val) ? null : val; saveState();
+}
+
+function noteBtn(key, note) {
+  return `<div class="btn note-toggle${note?' has-note':''}" data-notekey="${key}">?</div>`;
+}
+function noteInputHtml(key, note, kind) {
+  if (!openNotes[key]) return '';
+  return `<div class="note-input-wrap"><input class="note-input" type="text" data-noteinput="${key}" data-notekind="${kind}"
+    placeholder="Amendment for this exercise..." value="${(note||'').replace(/"/g,'&quot;')}"></div>`;
 }
 
 function exRow(item, key) {
@@ -218,35 +264,38 @@ function exRow(item, key) {
   const cls = st.status==='yes' ? ' state-done' : st.status==='no' ? ' state-miss' : '';
   const nameLine = item.wt ? `${item.n}, ${item.wt}` : item.n;
   return `<div class="row${cls}"><div class="row-top">
-    <div class="ex-info"><div class="ex-name">${nameLine}</div><div class="ex-target num">${item.reps}</div>
+    <div class="ex-info"><div class="ex-name">${nameLine}</div><div class="ex-target num">${item.reps||''}</div>
     ${item.f?`<div class="ex-flag">⚑ ${item.f}</div>`:''}</div>
     <div class="btns">
       <div class="btn yes ${st.status==='yes'?'active':''}" data-key="${key}" data-status="yes">✓</div>
       <div class="btn no ${st.status==='no'?'active':''}" data-key="${key}" data-status="no">✗</div>
-    </div></div></div>`;
+      ${noteBtn(key, st.note)}
+    </div></div>
+    ${noteInputHtml(key, st.note, 'tick')}
+  </div>`;
 }
 
 function zone2Row(item, key) {
   const z = getZone2(key);
   return `<div class="row z2-row${z.mode?' filled':''}">
-    <div class="ex-name">${item.n}${item.badge?` <span class="run-badge">${item.badge}</span>`:''}</div>
-    ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
+    <div class="row-top"><div class="ex-info">
+      <div class="ex-name">${item.n}${item.badge?` <span class="run-badge">${item.badge}</span>`:''}</div>
+      ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
+    </div>
+    <div class="btns">${noteBtn(key, z.note)}</div></div>
     <div class="z2-modes">
       <div class="z2-mode ${z.mode==='bike'?'active':''}" data-key="${key}" data-mode="bike">Bike</div>
       <div class="z2-mode ${z.mode==='run'?'active':''}" data-key="${key}" data-mode="run">Run</div>
       <div class="z2-mode ${z.mode==='row'?'active':''}" data-key="${key}" data-mode="row">Row</div>
     </div>
+    ${noteInputHtml(key, z.note, 'zone2')}
   </div>`;
-}
-
-function rowFor(item, key) {
-  return item.type === 'zone2' ? zone2Row(item, key) : exRow(item, key);
 }
 
 function renderTabs() {
   const tabs = document.getElementById("tabs");
   tabs.innerHTML = DAY_ORDER.map(d => `<div class="tab ${d===activeDay?'active':''}" data-day="${d}">${DAYS[d].label[0]}</div>`).join('');
-  tabs.querySelectorAll('.tab').forEach(t => t.onclick = () => { activeDay = t.dataset.day; render(); });
+  tabs.querySelectorAll('.tab').forEach(t => t.onclick = () => { activeDay = t.dataset.day; openNotes = {}; render(); });
 }
 
 function renderDay() {
@@ -257,33 +306,57 @@ function renderDay() {
   PHYSIO.forEach((item,i) => h += exRow(item, k(activeDay,'physio',i)));
   if (d.glute) { h += `<div class="sec-title">Glute Activation</div>`;
     d.glute.forEach((item,i) => h += exRow(item, k(activeDay,'glute',i))); }
-  h += `<div class="sec-title">Workout</div>`;
-  if (d.warmup) h += rowFor(d.warmup, k(activeDay,'warmup',0));
-  if (d.wodbox) h += `<div class="wod-box">${d.wodbox}</div>`;
-  d.workout.forEach((item,i) => h += rowFor(item, k(activeDay,'workout',i)));
-  const zone2Days = ["mon","wed","sat"]; // Zone 2 dropped from Tue/Fri 3 Sep 2026 — both already carry enough cardio (warm-up + hard session + warm-down); Thu is rest, Sun's row already is the day's Zone 2 volume
+  if (d.warmup && d.warmup.length) {
+    h += `<div class="sec-title">Warm-up</div>`;
+    d.warmup.forEach((item,i) => h += exRow(item, k(activeDay,'warmup',i)));
+  }
+  if (d.wodbox) h += `<div class="sec-title">Workout</div><div class="wod-box">${d.wodbox}</div>`;
+  else h += `<div class="sec-title">Workout</div>`;
+  d.workout.forEach((item,i) => h += exRow(item, k(activeDay,'workout',i)));
+  if (d.cooldown && d.cooldown.length) {
+    h += `<div class="sec-title">Cool-down</div>`;
+    d.cooldown.forEach((item,i) => h += exRow(item, k(activeDay,'cooldown',i)));
+  }
+  const zone2Days = ["mon","wed","sat"]; // Zone 2 dropped from Tue/Fri 3 Sep 2026 — both already carry enough cardio (warm-up + hard session + cool-down); Thu is rest; Sun's row already is the day's Zone 2 volume
   if (zone2Days.includes(activeDay)) {
-    h += zone2Row({n:"Zone 2 (AM)", hint:"Target 30min — after weights, or evening catch-up if it doesn't fit (REINSTATED 30 Aug 2026)"}, k(activeDay,'z2am',0));
+    h += `<div class="sec-title">Zone 2</div>`;
+    h += zone2Row({n:"Zone 2 (AM)", hint:"Target 30min — after weights"}, k(activeDay,'z2am',0));
   }
   h += `<div class="sec-title">PM Rehab</div>`;
   PM_ITEMS.forEach((item,i) => h += exRow(item, k(activeDay,'pm',i)));
   if (zone2Days.includes(activeDay)) {
-    h += zone2Row({n:"Zone 2 (PM)", hint:"evening catch-up"}, k(activeDay,'z2pm',0));
+    h += zone2Row({n:"Zone 2 (PM catch-up)", hint:"If the AM slot didn't happen"}, k(activeDay,'z2pm',0));
   }
   h += `<div class="sec-title">Foot Pain</div>`;
   const pain = getPain(activeDay);
   h += `<div class="pain-row">` + [...Array(10).keys()].map(n=>n+1).map(n =>
     `<div class="pain-btn ${pain===n?'active':''}" data-pain="${n}">${n}</div>`).join('') + `</div>`;
-  h += `<div class="sec-title">Notes</div>`;
-  h += `<textarea class="notes" id="notesBox" placeholder="Weight changes, issues, anything...">${getNote(activeDay)}</textarea>`;
   h += `<button class="copy-btn" id="copyBtn">Copy Update</button>`;
   document.getElementById("main").innerHTML = h;
 
-  document.querySelectorAll('.btn').forEach(b => b.onclick = () => { setStatus(b.dataset.key, b.dataset.status); render(); });
+  document.querySelectorAll('.btn.yes, .btn.no').forEach(b => b.onclick = () => { setStatus(b.dataset.key, b.dataset.status); render(); });
   document.querySelectorAll('.z2-mode').forEach(b => b.onclick = () => { setZone2Mode(b.dataset.key, b.dataset.mode); render(); });
+  document.querySelectorAll('.note-toggle').forEach(b => b.onclick = () => {
+    const nk = b.dataset.notekey;
+    openNotes[nk] = !openNotes[nk];
+    render();
+    if (openNotes[nk]) {
+      const inp = document.querySelector(`[data-noteinput="${nk}"]`);
+      if (inp) inp.focus();
+    }
+  });
+  document.querySelectorAll('.note-input').forEach(inp => inp.oninput = (e) => {
+    const nk = e.target.dataset.noteinput;
+    const kind = e.target.dataset.notekind;
+    if (kind === 'zone2') { setZone2NoteOnly(nk, e.target.value); }
+    else { setItemNote(nk, e.target.value); }
+  });
   document.querySelectorAll('.pain-btn').forEach(b => b.onclick = () => { setPain(activeDay, parseInt(b.dataset.pain)); render(); });
-  document.getElementById('notesBox').oninput = (e) => setNote(activeDay, e.target.value);
   document.getElementById('copyBtn').addEventListener('click', onCopyClick);
+}
+
+function setZone2NoteOnly(key, val) {
+  const cur = getZone2(key); cur.note = val; state[key] = cur; saveState();
 }
 
 function render() { renderTabs(); renderDay(); }
@@ -293,44 +366,46 @@ function allKeysForDay(day) {
   const keys = [];
   PHYSIO.forEach((item,i) => keys.push([k(day,'physio',i), `AM Rehab: ${item.n}`, 'tick']));
   if (d.glute) d.glute.forEach((item,i) => keys.push([k(day,'glute',i), `Glute Activation: ${item.n}`, 'tick']));
-  if (d.warmup) keys.push([k(day,'warmup',0), `Warm-up`, d.warmup.type==='zone2'?'zone2':'tick']);
-  d.workout.forEach((item,i) => keys.push([k(day,'workout',i), `Workout: ${item.n}`, item.type==='zone2'?'zone2':'tick']));
+  if (d.warmup) d.warmup.forEach((item,i) => keys.push([k(day,'warmup',i), `Warm-up: ${item.n}`, 'tick']));
+  d.workout.forEach((item,i) => keys.push([k(day,'workout',i), `Workout: ${item.n}`, 'tick']));
+  if (d.cooldown) d.cooldown.forEach((item,i) => keys.push([k(day,'cooldown',i), `Cool-down: ${item.n}`, 'tick']));
   keys.push([k(day,'z2am',0), `Zone 2 (AM)`, 'zone2']);
   PM_ITEMS.forEach((item,i) => keys.push([k(day,'pm',i), `PM Rehab: ${item.n}`, 'tick']));
-  keys.push([k(day,'z2pm',0), `Zone 2 (PM)`, 'zone2']);
+  keys.push([k(day,'z2pm',0), `Zone 2 (PM catch-up)`, 'zone2']);
   return keys;
 }
 
 function buildDelta(day) {
   const lines = [];
-  const already = copied[day] || { keys:[], notes:"", pain:null };
+  const already = copied[day] || { keys:[], pain:null };
   const newKeys = [];
   allKeysForDay(day).forEach(([key,label,type]) => {
     if (already.keys.includes(key)) return;
     if (type === 'zone2') {
       const z = getZone2(key);
-      if (!z.mode) return;
-      const modeLabel = z.mode.charAt(0).toUpperCase()+z.mode.slice(1);
-      lines.push(`${label}: ${modeLabel}`);
+      if (!z.mode && !z.note) return;
+      let line = z.mode ? `${label}: ${z.mode.charAt(0).toUpperCase()+z.mode.slice(1)}` : `${label}:`;
+      if (z.note) line += ` — note: ${z.note}`;
+      lines.push(line);
       newKeys.push(key);
     } else {
       const st = get(key);
-      if (!st.status) return;
-      lines.push(`${label}: ${st.status==='yes'?'✓':'✗'}`);
+      if (!st.status && !st.note) return;
+      let line = st.status ? `${label}: ${st.status==='yes'?'✓':'✗'}` : `${label}:`;
+      if (st.note) line += ` — note: ${st.note}`;
+      lines.push(line);
       newKeys.push(key);
     }
   });
-  const note = getNote(day);
   const pain = getPain(day);
   let extra = [];
-  if (note && note !== already.notes) extra.push(`Notes: ${note}`);
   if (pain !== null && pain !== already.pain) extra.push(`Foot Pain: ${pain}/10`);
   const text = [...lines, ...extra].join('\n');
-  return { text, newKeys, note, pain };
+  return { text, newKeys, pain };
 }
 
 async function onCopyClick() {
-  const { text, newKeys, note, pain } = buildDelta(activeDay);
+  const { text, newKeys, pain } = buildDelta(activeDay);
   const btn = document.getElementById("copyBtn");
   if (!text) {
     btn.textContent = "Nothing new to copy"; btn.classList.add("nonew");
@@ -340,8 +415,8 @@ async function onCopyClick() {
   const full = `${DAYS[activeDay].full}\n${text}`;
   try { await navigator.clipboard.writeText(full); }
   catch(e) { const ta=document.createElement('textarea'); ta.value=full; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
-  const prev = copied[activeDay] || { keys:[], notes:"", pain:null };
-  copied[activeDay] = { keys: [...prev.keys, ...newKeys], notes: note, pain: pain };
+  const prev = copied[activeDay] || { keys:[], pain:null };
+  copied[activeDay] = { keys: [...prev.keys, ...newKeys], pain: pain };
   saveCopied();
   btn.textContent = "Copied ✓"; btn.classList.add("copied");
   setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("copied"); }, 2000);
