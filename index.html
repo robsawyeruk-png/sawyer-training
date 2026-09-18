@@ -220,8 +220,8 @@ let openNotes = {}; // which note inputs are currently expanded, session-only, n
 // under it — the page starts blank automatically, with no clearing logic needed. STANDING RULE:
 // bump the week number here every time this file is rebuilt for a new week, or this fix silently
 // stops working.
-const STORE_KEY = "checklist_wk3_v24_state";
-const COPIED_KEY = "checklist_wk3_v24_copied";
+const STORE_KEY = "checklist_wk3_v25_state";
+const COPIED_KEY = "checklist_wk3_v25_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -251,6 +251,14 @@ function setZone2Mode(key, mode) {
 function getPain(day) { return state[`${day}_pain`] || null; }
 function setPain(day, val) {
   const cur = getPain(day); state[`${day}_pain`] = (cur===val) ? null : val; saveState();
+}
+
+// Steps — full-day Apple Health total, entered once the day is actually finished (same page as
+// Foot Pain, same reasoning: both describe THIS page's day, filled in once it's over, not the day
+// the numbers happen to be typed in). Free-text number, not a button grid — no upper bound on steps.
+function getSteps(day) { const v = state[`${day}_steps`]; return (v===undefined || v===null || v==='') ? null : v; }
+function setSteps(day, val) {
+  state[`${day}_steps`] = (val===''||val===null||val===undefined) ? null : val; saveState();
 }
 
 function noteBtn(key, note) {
@@ -334,6 +342,10 @@ function renderDay() {
   const pain = getPain(activeDay);
   h += `<div class="pain-row">` + [...Array(10).keys()].map(n=>n+1).map(n =>
     `<div class="pain-btn ${pain===n?'active':''}" data-pain="${n}">${n}</div>`).join('') + `</div>`;
+  h += `<div class="sec-title">Steps (Apple Health, full day)</div>`;
+  const steps = getSteps(activeDay);
+  h += `<div class="note-input-wrap"><input class="note-input steps-input" type="number" inputmode="numeric"
+    placeholder="e.g. 8442" value="${steps!==null?steps:''}"></div>`;
   h += `<button class="copy-btn" id="copyBtn">Copy Update</button>`;
   document.getElementById("main").innerHTML = h;
 
@@ -355,6 +367,8 @@ function renderDay() {
     else { setItemNote(nk, e.target.value); }
   });
   document.querySelectorAll('.pain-btn').forEach(b => b.onclick = () => { setPain(activeDay, parseInt(b.dataset.pain)); render(); });
+  const stepsInput = document.querySelector('.steps-input');
+  if (stepsInput) stepsInput.oninput = (e) => { setSteps(activeDay, e.target.value ? parseInt(e.target.value) : null); };
   document.getElementById('copyBtn').addEventListener('click', onCopyClick);
 }
 
@@ -380,7 +394,7 @@ function allKeysForDay(day) {
 
 function buildDelta(day) {
   const lines = [];
-  const already = copied[day] || { keys:[], pain:null };
+  const already = copied[day] || { keys:[], pain:null, steps:null };
   const newKeys = [];
   allKeysForDay(day).forEach(([key,label,type]) => {
     if (already.keys.includes(key)) return;
@@ -401,14 +415,16 @@ function buildDelta(day) {
     }
   });
   const pain = getPain(day);
+  const steps = getSteps(day);
   let extra = [];
   if (pain !== null && pain !== already.pain) extra.push(`Foot Pain: ${pain}/10`);
+  if (steps !== null && steps !== already.steps) extra.push(`Steps (Apple Health): ${steps}`);
   const text = [...lines, ...extra].join('\n');
-  return { text, newKeys, pain };
+  return { text, newKeys, pain, steps };
 }
 
 async function onCopyClick() {
-  const { text, newKeys, pain } = buildDelta(activeDay);
+  const { text, newKeys, pain, steps } = buildDelta(activeDay);
   const btn = document.getElementById("copyBtn");
   if (!text) {
     btn.textContent = "Nothing new to copy"; btn.classList.add("nonew");
@@ -418,8 +434,8 @@ async function onCopyClick() {
   const full = `${DAYS[activeDay].full}\n${text}`;
   try { await navigator.clipboard.writeText(full); }
   catch(e) { const ta=document.createElement('textarea'); ta.value=full; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
-  const prev = copied[activeDay] || { keys:[], pain:null };
-  copied[activeDay] = { keys: [...prev.keys, ...newKeys], pain: pain };
+  const prev = copied[activeDay] || { keys:[], pain:null, steps:null };
+  copied[activeDay] = { keys: [...prev.keys, ...newKeys], pain: pain, steps: steps };
   saveCopied();
   btn.textContent = "Copied ✓"; btn.classList.add("copied");
   setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("copied"); }, 2000);
