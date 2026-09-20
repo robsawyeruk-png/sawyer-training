@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Marathon Week 3 — Daily Workouts</title>
+<title>Marathon Week 4 — Daily Workouts</title>
 <style>
   :root {
     --bg: #0d0d0d; --panel: #161616; --panel-2: #1e1e1e; --line: #2a2a2a;
@@ -90,7 +90,7 @@
   <header>
     <div class="eyebrow">Rob Sawyer · Marathon Prep</div>
     <h1>Daily Workouts</h1>
-    <div class="week-label">Marathon Week 3 of 34 — 14–20 Sep 2026</div>
+    <div class="week-label">Marathon Week 4 of 34 — 21–27 Sep 2026</div>
     <div class="subtitle" id="weekSubtitle">Monday — Upper Body</div>
     <div class="countdowns">🏃 <b>London Marathon</b> 25 Apr 2027 — 32wk to go</div>
   </header>
@@ -125,7 +125,7 @@ const DAYS = {
       {n:"Core Machine", wt:"65kg", reps:"3×10", f:"Rest 60s. HOLD."},
       {n:"Dead Hang", wt:"BW", reps:"3×20s", f:"Rest 60s. HOLD."},
     ]},
-  tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (reinstated Wk3 — swap to easy Zone 2 row if HRV still down)",
+  tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (swap to easy Zone 2 row if HRV still down)",
     warmup: [
       {n:"Run", reps:"10min easy"},
       {n:"Row", reps:"10min easy"},
@@ -147,7 +147,7 @@ const DAYS = {
       {n:"Side Plank", reps:"3×30s each side", f:"Rest 45s"},
     ],
     workout: [
-      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Top of the machine's 3 settings (5/10/15kg)."},
+      {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s. CORRECTED 20 Sep 2026 — machine goes higher than 15kg, this was never the equipment ceiling; holding here because it genuinely feels maximal for Rob right now, same as Lying Cable Knee Drive."},
       {n:"Lying Cable Knee Drive", wt:"20kg", reps:"3×15 each", f:"Rest 60s. Bumped from 15kg Wed 16 Sep 2026, Rob's call, new standard."},
       {n:"Goblet Squat", wt:"26kg", reps:"4×10", f:"Rest 100s. Bumped from 25kg Wed 16 Sep 2026, Rob's call, new standard."},
       {n:"Bulgarian Split Squat", wt:"6kg DBs", reps:"3×10 each", f:"Rest 60s. Bumped from 4kg Sat 19 Sep 2026, Rob's call — \"brutal\" but keeping it, new standard. Applies to both Wed and Sat."},
@@ -189,9 +189,9 @@ const DAYS = {
     ]},
   sun: { label:"Sun", full:"Sunday — Run + Row (NEW structure)",
     warmup: [
-      {n:"Run", reps:"40min, fresh legs, Zone 2 — self-directed, 5-10min jumps based on feel, before the row"},
+      {n:"Run", reps:"45min, fresh legs, Zone 2 — self-directed, 5-10min jumps based on feel, before the row"},
     ],
-    wodbox: "STRUCTURE (agreed 30 Aug 2026, run target bumped to 40min 13 Sep 2026) — 40min run (fresh legs, Zone 2) then 60min row.\nRow back to its 60min hold this week — Week 2's 40min row was a one-off trade against a longer run that day, not a target change.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
+    wodbox: "STRUCTURE (agreed 30 Aug 2026, run target bumped to 45min 20 Sep 2026) — 45min run (fresh legs, Zone 2) then 60min row.\nRow holds at 60min — didn't happen at all in Week 3, held again rather than pushed toward 75-90min yet.\nRUNNING GATE: pain ≤2/10 the morning after, or remaining runs that week stop.",
     workout: [
       {n:"Row (after run)", reps:"60min, Concept2, Zone 2"},
     ] },
@@ -220,8 +220,8 @@ let openNotes = {}; // which note inputs are currently expanded, session-only, n
 // under it — the page starts blank automatically, with no clearing logic needed. STANDING RULE:
 // bump the week number here every time this file is rebuilt for a new week, or this fix silently
 // stops working.
-const STORE_KEY = "checklist_wk3_v26_state";
-const COPIED_KEY = "checklist_wk3_v26_copied";
+const STORE_KEY = "checklist_wk4_v27_state";
+const COPIED_KEY = "checklist_wk4_v27_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
