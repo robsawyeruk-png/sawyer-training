@@ -160,9 +160,9 @@ const DAYS = {
     warmup: [
       {n:"Row", reps:"10min easy, no fixed target"},
     ],
-    wodbox: "NEW WOD — Wall Ball and Ski dropped, replaced with Kettlebell Swings and Assault Bike.\n×2 rounds: Row 1000m → KB Swings → Run 5min (7.5km/h) → KB Swings → Bike (60 cal) → KB Swings\n30s rest between every station.\nCONFIRMED TARGETS (4 Sep 2026, Bike corrected 11 Sep 2026): Row 1000m fixed, Run 5min @ 7.5km/h, Bike 60 calories, KB Swings 16kg × 25 reps.\nAll splits from Garmin lap-button press only — Concept2 is NOT used on WOD days. NEVER trust Garmin's auto-detected KB Swing rep counts — Rob always does 25, regardless of what the file shows.",
+    wodbox: "Row 1000m → 25× 16kg KB Swings → Run 5min (7.5km/h) → 25× 16kg KB Swings → Bike 60cal → 25× 16kg KB Swings. Repeat once. Never trust Garmin's auto-detected KB Swing rep count — always 25.",
     workout: [
-      {n:"Full WOD session (screenshot/Concept2/Garmin to follow)", reps:"2 rounds — Row 1km / KB / Run 5min / KB / Bike 4:30 / KB"},
+      {n:"Full WOD session", reps:"2 rounds: Row 1k, KB, Run 5min, KB, Bike 60cal, KB"},
     ],
     cooldown: [
       {n:"Bike", reps:"10min — needed, wired after WOD"},
@@ -220,8 +220,8 @@ let openNotes = {}; // which note inputs are currently expanded, session-only, n
 // under it — the page starts blank automatically, with no clearing logic needed. STANDING RULE:
 // bump the week number here every time this file is rebuilt for a new week, or this fix silently
 // stops working.
-const STORE_KEY = "checklist_wk4_v27_state";
-const COPIED_KEY = "checklist_wk4_v27_copied";
+const STORE_KEY = "checklist_wk4_v28_state";
+const COPIED_KEY = "checklist_wk4_v28_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
