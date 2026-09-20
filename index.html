@@ -148,9 +148,9 @@ const DAYS = {
     ],
     workout: [
       {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Top of the machine's 3 settings (5/10/15kg)."},
-      {n:"Lying Cable Knee Drive", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Confirmed 5 Sep 2026 — first real attempt landed comfortably, new standard."},
-      {n:"Goblet Squat", wt:"25kg", reps:"4×10", f:"Rest 100s. NEW to Wednesday 3 Sep 2026 — replaces Back Squat as the squat pattern here."},
-      {n:"Bulgarian Split Squat", wt:"4kg DBs", reps:"3×10 each", f:"Rest 60s. Confirmed 5 Sep 2026 — genuine load progression from bodyweight, new standard."},
+      {n:"Lying Cable Knee Drive", wt:"20kg", reps:"3×15 each", f:"Rest 60s. Bumped from 15kg Wed 16 Sep 2026, Rob's call, new standard."},
+      {n:"Goblet Squat", wt:"26kg", reps:"4×10", f:"Rest 100s. Bumped from 25kg Wed 16 Sep 2026, Rob's call, new standard."},
+      {n:"Bulgarian Split Squat", wt:"6kg DBs", reps:"3×10 each", f:"Rest 60s. Bumped from 4kg Sat 19 Sep 2026, Rob's call — \"brutal\" but keeping it, new standard. Applies to both Wed and Sat."},
       {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"Rest 60s. HOLD."},
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
@@ -178,12 +178,12 @@ const DAYS = {
     ],
     workout: [
       {n:"Cable Straight Leg Raise", wt:"15kg", reps:"3×15 each", f:"Rest 60s."},
-      {n:"Lying Cable Knee Drive", wt:"15kg", reps:"3×15 each", f:"Rest 60s. Confirmed 5 Sep 2026 — first real attempt landed comfortably, new standard."},
+      {n:"Lying Cable Knee Drive", wt:"20kg", reps:"3×15 each", f:"Rest 60s. Bumped from 15kg Wed 16 Sep 2026, carried to Saturday, Rob's call, new standard."},
       {n:"Leg Press", wt:"100kg", reps:"4×12", f:"Rest 100s. HOLD — 105kg PB chase dropped 3 Sep 2026, not owed any more."},
       {n:"Hip Thrust", wt:"40kg", reps:"4×12", f:"Rest 100s. HOLD — 45kg PB chase dropped 3 Sep 2026, not owed any more."},
       {n:"Hamstring Curl", wt:"40kg", reps:"4×10", f:"Rest 60s. HOLD."},
       {n:"Single-Leg RDL", wt:"4kg DBs", reps:"3×8 each", f:"Rest 60s. HOLD."},
-      {n:"Bulgarian Split Squat", wt:"4kg DBs", reps:"3×10 each", f:"Rest 60s. Confirmed 5 Sep 2026 — genuine load progression from bodyweight, new standard."},
+      {n:"Bulgarian Split Squat", wt:"6kg DBs", reps:"3×10 each", f:"Rest 60s. Bumped from 4kg Sat 19 Sep 2026, Rob's call — \"brutal\" but keeping it, new standard. Applies to both Wed and Sat."},
       {n:"Single-Leg Calf Raise", wt:"BW to start", reps:"3×15 each", f:"Rest 60s. NEW 3 Sep 2026 — brought forward given live calf/ankle weakness concerns."},
       {n:"Captain's Chair", wt:"BW", reps:"3×25", f:"Rest 50s. Moved to last 3 Sep 2026 — core after compound lifts, not before."},
     ]},
@@ -220,8 +220,8 @@ let openNotes = {}; // which note inputs are currently expanded, session-only, n
 // under it — the page starts blank automatically, with no clearing logic needed. STANDING RULE:
 // bump the week number here every time this file is rebuilt for a new week, or this fix silently
 // stops working.
-const STORE_KEY = "checklist_wk3_v25_state";
-const COPIED_KEY = "checklist_wk3_v25_copied";
+const STORE_KEY = "checklist_wk3_v26_state";
+const COPIED_KEY = "checklist_wk3_v26_copied";
 
 function loadState() {
   try { const r = localStorage.getItem(STORE_KEY); state = r ? JSON.parse(r) : {}; } catch(e) { state = {}; }
@@ -243,9 +243,12 @@ function setItemNote(key, val) {
 // Zone 2 AM/PM items — modality (bike/run/row) picker IS the tick — Claude pulls the real duration
 // and zone-time from Garmin afterward and writes it into the Card. The checklist's only job is
 // telling Claude what to look for, not recording numbers by hand.
-function getZone2(key) { return state[key] || { mode:null, note:"" }; }
+function getZone2(key) { return state[key] || { mode:null, note:"", status:null }; }
 function setZone2Mode(key, mode) {
   const cur = getZone2(key); cur.mode = (cur.mode===mode) ? null : mode; state[key]=cur; saveState();
+}
+function setZone2Status(key, status) {
+  const cur = getZone2(key); cur.status = (cur.status===status) ? null : status; state[key]=cur; saveState();
 }
 
 function getPain(day) { return state[`${day}_pain`] || null; }
@@ -288,12 +291,17 @@ function exRow(item, key) {
 
 function zone2Row(item, key) {
   const z = getZone2(key);
-  return `<div class="row z2-row${z.mode?' filled':''}">
+  const cls = z.status==='yes' ? ' state-done' : z.status==='no' ? ' state-miss' : '';
+  return `<div class="row z2-row${z.mode?' filled':''}${cls}">
     <div class="row-top"><div class="ex-info">
       <div class="ex-name">${item.n}${item.badge?` <span class="run-badge">${item.badge}</span>`:''}</div>
       ${item.hint?`<div class="ex-target">${item.hint}</div>`:''}
     </div>
-    <div class="btns">${noteBtn(key, z.note)}</div></div>
+    <div class="btns">
+      <div class="btn yes ${z.status==='yes'?'active':''}" data-statuskey="${key}" data-zstatus="yes">✓</div>
+      <div class="btn no ${z.status==='no'?'active':''}" data-statuskey="${key}" data-zstatus="no">✗</div>
+      ${noteBtn(key, z.note)}
+    </div></div>
     <div class="z2-modes">
       <div class="z2-mode ${z.mode==='bike'?'active':''}" data-key="${key}" data-mode="bike">Bike</div>
       <div class="z2-mode ${z.mode==='run'?'active':''}" data-key="${key}" data-mode="run">Run</div>
@@ -351,6 +359,7 @@ function renderDay() {
 
   document.querySelectorAll('.btn.yes, .btn.no').forEach(b => b.onclick = () => { setStatus(b.dataset.key, b.dataset.status); render(); });
   document.querySelectorAll('.z2-mode').forEach(b => b.onclick = () => { setZone2Mode(b.dataset.key, b.dataset.mode); render(); });
+  document.querySelectorAll('[data-statuskey]').forEach(b => b.onclick = () => { setZone2Status(b.dataset.statuskey, b.dataset.zstatus); render(); });
   document.querySelectorAll('.note-toggle').forEach(b => b.onclick = () => {
     const nk = b.dataset.notekey;
     openNotes[nk] = !openNotes[nk];
