@@ -401,27 +401,56 @@ function allKeysForDay(day) {
   return keys;
 }
 
+// FIX, 26 Sep 2026: the old version tracked ONLY whether a key had ever been copied (a plain
+// list of keys), never what its value was at copy time. That meant amending anything already
+// copied — ticking a box you'd left blank, fixing a mistake, adding a note — was permanently
+// invisible to every future copy for that day, with no way to tell it had happened. This version
+// stores a SIGNATURE (the actual status+note content) per key, and compares against that
+// signature, not just presence, so a real change is always caught, even on an already-copied item.
+// MIGRATION: old saved data only has `keys` (an array), no `sigs`. On first load under the old
+// format, treat the CURRENT value of each already-copied key as its baseline signature, so nothing
+// already legitimately copied floods back in at once — only genuine changes from here on surface.
+function migrateCopiedDay(day, entry) {
+  if (!entry) return { sigs:{}, pain:null, steps:null };
+  if (entry.sigs) return entry; // already migrated
+  const sigs = {};
+  (entry.keys || []).forEach((key) => { sigs[key] = currentSignature(key); });
+  return { sigs, pain: entry.pain ?? null, steps: entry.steps ?? null };
+}
+function currentSignature(key) {
+  // Zone2 keys are always named "<day>_z2am_0" / "<day>_z2pm_0" (see allKeysForDay) — check the
+  // key's own name, not the stored object's shape, since an untouched item's stored shape is
+  // ambiguous (both get() and getZone2() default to harmless-looking empty objects).
+  if (/_z2(am|pm)_0$/.test(key)) {
+    const z = getZone2(key);
+    return `${z.mode||''}|${z.note||''}`;
+  }
+  const st = get(key);
+  return `${st.status||''}|${st.note||''}`;
+}
+
 function buildDelta(day) {
   const lines = [];
-  const already = copied[day] || { keys:[], pain:null, steps:null };
-  const newKeys = [];
+  const already = migrateCopiedDay(day, copied[day]);
+  const newSigs = {};
   allKeysForDay(day).forEach(([key,label,type]) => {
-    if (already.keys.includes(key)) return;
+    let sig, line;
     if (type === 'zone2') {
       const z = getZone2(key);
       if (!z.mode && !z.note) return;
-      let line = z.mode ? `${label}: ${z.mode.charAt(0).toUpperCase()+z.mode.slice(1)}` : `${label}:`;
+      sig = `${z.mode||''}|${z.note||''}`;
+      line = z.mode ? `${label}: ${z.mode.charAt(0).toUpperCase()+z.mode.slice(1)}` : `${label}:`;
       if (z.note) line += ` — note: ${z.note}`;
-      lines.push(line);
-      newKeys.push(key);
     } else {
       const st = get(key);
       if (!st.status && !st.note) return;
-      let line = st.status ? `${label}: ${st.status==='yes'?'✓':'✗'}` : `${label}:`;
+      sig = `${st.status||''}|${st.note||''}`;
+      line = st.status ? `${label}: ${st.status==='yes'?'✓':'✗'}` : `${label}:`;
       if (st.note) line += ` — note: ${st.note}`;
-      lines.push(line);
-      newKeys.push(key);
     }
+    if (already.sigs[key] === sig) return; // unchanged since last copy — genuinely nothing new here
+    lines.push(line);
+    newSigs[key] = sig;
   });
   const pain = getPain(day);
   const steps = getSteps(day);
@@ -429,11 +458,11 @@ function buildDelta(day) {
   if (pain !== null && pain !== already.pain) extra.push(`Foot Pain: ${pain}/10`);
   if (steps !== null && steps !== already.steps) extra.push(`Steps (Apple Health): ${steps}`);
   const text = [...lines, ...extra].join('\n');
-  return { text, newKeys, pain, steps };
+  return { text, newSigs, pain, steps, already };
 }
 
 async function onCopyClick() {
-  const { text, newKeys, pain, steps } = buildDelta(activeDay);
+  const { text, newSigs, pain, steps, already } = buildDelta(activeDay);
   const btn = document.getElementById("copyBtn");
   if (!text) {
     btn.textContent = "Nothing new to copy"; btn.classList.add("nonew");
@@ -443,8 +472,7 @@ async function onCopyClick() {
   const full = `${DAYS[activeDay].full}\n${text}`;
   try { await navigator.clipboard.writeText(full); }
   catch(e) { const ta=document.createElement('textarea'); ta.value=full; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
-  const prev = copied[activeDay] || { keys:[], pain:null, steps:null };
-  copied[activeDay] = { keys: [...prev.keys, ...newKeys], pain: pain, steps: steps };
+  copied[activeDay] = { sigs: { ...already.sigs, ...newSigs }, pain: pain, steps: steps };
   saveCopied();
   btn.textContent = "Copied ✓"; btn.classList.add("copied");
   setTimeout(() => { btn.textContent="Copy Update"; btn.classList.remove("copied"); }, 2000);
