@@ -108,22 +108,17 @@
 // covering both. This makes future changes (a warm-up piece added/dropped/renamed) a one-line edit
 // to the relevant day's array, not a restructure of the render logic.
 const DAYS = {
-  mon: { label:"Mon", full:"Monday — Upper Body (rebuilt: posture + push/pull spacing)",
+  mon: { label:"Mon", full:"Monday — Upper Body (shortened: Bench first, 6 lifts)",
     warmup: [
       {n:"Bike", reps:"10min easy"},
     ],
     workout: [
-      {n:"Chin Tucks", wt:"BW", reps:"3×10 (5s hold)", f:"Rest 20s. NEW 3 Sep 2026 — deep neck flexor strength for forward head posture."},
+      {n:"Bench Press", wt:"57.5kg", reps:"4×6", f:"Rest 100s. NOW FIRST (order changed 6 Oct 2026, Rob's call — priority lift goes while freshest). 57.5kg is a TRIAL: up from 55kg after Rob got +2.5kg up on the last rep on 5 Oct. Do 2 light ramp-up sets first. Hold 55kg if sets 1-2 grind or any rep fails."},
+      {n:"Pull-Ups", wt:"Green band", reps:"3×max", f:"Rest 90s. HOLD. Straight after Bench (different muscles, so still fresh) — do them here so they actually happen. If skipped again, swap back to Lat Pulldown."},
+      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Rest 100s. Now AFTER Bench and Pull-Ups. If last-set reps drop under 8 or the shoulder pinches, hold 27.5kg or stop — don't grind it. Watch shoulder closely."},
       {n:"Cable Row", wt:"65kg", reps:"3×10", f:"Rest 100s. HOLD — bumped from 62.5kg 14 Sep 2026."},
-      {n:"Strict OHP", wt:"30kg", reps:"3×8", f:"Rest 100s. Goes before Bench deliberately — harder, more shoulder-sensitive lift done while freshest. Watch shoulder closely."},
-      {n:"Lat Pulldown", wt:"59kg", reps:"3×10", f:"Rest 100s. Bumped from 56.5kg 28 Sep 2026 — Rob added 2.5kg on the last rep, new target."},
-      {n:"Bench Press", wt:"55kg", reps:"4×6", f:"Rest 100s. Bumped from 50kg 14 Sep 2026 — resuming a previous working weight, not a fresh PB push."},
-      {n:"Pull-Ups", wt:"Green band", reps:"3×max", f:"Rest 90s. HOLD."},
-      {n:"Incline DB Press", wt:"TBD — first attempt", reps:"3×10", f:"Rest 90s. NEW 3 Sep 2026, alongside Bench not instead of it — upper chest angle, less anterior shoulder stress, matches the definition goal."},
       {n:"Face Pulls", wt:"16.25kg", reps:"3×15", f:"Rest 60s. HOLD."},
-      {n:"Cable External Rotation", wt:"TBD — first attempt", reps:"3×12 each", f:"Rest 45s. NEW 3 Sep 2026 — same cable column as Face Pulls, no band. Targets external rotator cuff specifically, protective given the OHP shoulder history."},
-      {n:"Core Machine", wt:"70kg", reps:"3×10", f:"Rest 60s. Bumped from 65kg 28 Sep 2026 — did 65 then 70, 70, new target."},
-      {n:"Dead Hang", wt:"BW", reps:"3×20s", f:"Rest 60s. HOLD."},
+      {n:"Core Machine", wt:"70kg", reps:"3×10", f:"Rest 60s. Bumped from 65kg 28 Sep 2026."},
     ]},
   tue: { label:"Tue", full:"Tuesday — Norwegian 4×4 (swap to easy Zone 2 row if HRV still down)",
     warmup: [
@@ -201,6 +196,7 @@ const PHYSIO = [
   {n:"Toe Stretch", reps:"2×60s"},
   {n:"Forward Step Drill", reps:"30 each foot"},
   {n:"High Knee Swaps", reps:"2×60s continuous"},
+  {n:"Chin Tucks", reps:"3×10 · 5s hold · BW (added 6 Oct 2026, every day)"},
 ];
 const PM_ITEMS = [
   {n:"Towel Scrunches", reps:"3×20"},
